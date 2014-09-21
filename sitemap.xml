@@ -5,16 +5,23 @@
   
   <url>
     <loc>http://xhoppe.github.io/blog/archives/</loc>
-    <lastmod>2014-09-21T20:43:46+09:30</lastmod>
+    <lastmod>2014-09-21T20:46:36+09:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://xhoppe.github.io/</loc>
-    <lastmod>2014-09-21T20:43:46+09:30</lastmod>
+    <lastmod>2014-09-21T20:46:36+09:30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xhoppe.github.io/user-doc/</loc>
+    <lastmod>2014-09-21T20:46:36+09:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   
