@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
+  <title>Api-doc - My Octopress Blog</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Here is the Xhoppe doc, User doc API doc Registration API Authentication API
-">
+  <meta name="description" content="Api-doc Sep 21st, 2014 8:54 pm Here we cover the inner working of Xhoppe&rsquo;s RESTful API. It assumes a basic understanding of the principles of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xhoppe.github.io">
+  <link rel="canonical" href="http://xhoppe.github.io/api-doc">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -64,52 +63,85 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article role="article">
   
-  
-  
-    <article>
-      
   <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/21/xhoppe-doc/">Xhoppe-doc</a></h1>
-    
-    
+    <h1 class="entry-title">Api-doc</h1>
+    <p class="meta">
+
+
+
+
+<time class='entry-date' datetime='2014-09-21T20:54:00+09:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>8:54 pm</span></time></p>
+  </header>
+  
+  <p>Here we cover the inner working of Xhoppe&rsquo;s RESTful API. It assumes a basic understanding of the principles of REST.</p>
+
+<h2>Version</h2>
+
+<p>All APIs are versioned. And the current version is v1.</p>
+
+<h2>API URL</h2>
+
+<p>All API access is over HTTPS. And the entry point for all API is under the URL <a href="http://test.xhop.pe/api/v1/">http://test.xhop.pe/api/v1/</a> . The v1 represents the API version number.</p>
+
+<h2>JSON</h2>
+
+<p>The REST API uses JSON format to encode the HTTP request and response. When the client sends a HTTP request to the server, the server expects the body is of JSON format. And when the client receives the HTTP response, if the response has body, it should also parse the body as JSON format.</p>
+
+<p>And when the client sents a HTTP request, it MUST add the following HTTP headers,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CONTENT_TYPE: application/json
+</span><span class='line'>ACCEPT: application/json</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>HTTP Method</h2>
+
+<p>The REST API uses different HTTP verbs to differentiate the actions the client wants to perform.</p>
+
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>PUT</li>
+<li>DELETE</li>
+</ul>
+
+
+<h2>Authentication</h2>
+
+<p>TBD</p>
+
+  
+    <footer>
       <p class="meta">
         
+        
 
 
 
 
-<time class='entry-date' datetime='2014-09-21T21:24:36+09:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>9:24 pm</span></time>
+<time class='entry-date' datetime='2014-09-21T20:54:00+09:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>8:54 pm</span></time>
         
       </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Here is the Xhoppe doc,</p>
-
-<p><a href="/user-doc">User doc</a></p>
-
-<p><a href="/api-doc">API doc</a></p>
-
-<p><a href="/api-register">Registration API</a></p>
-
-<p><a href="/api-authentication">Authentication API</a></p>
+      
+        <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://xhoppe.github.io/api-doc/index.html" data-via="" data-counturl="http://xhoppe.github.io/api-doc/index.html" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
-
-    </article>
+      
+    </footer>
   
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+</article>
+
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -129,6 +161,7 @@
 
   
 </aside>
+
 
     </div>
   </div>
