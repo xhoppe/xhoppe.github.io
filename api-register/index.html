@@ -87,7 +87,7 @@
 <p>Expected parameters in the body</p>
 
 <ul>
-<li>email:  The email of the user</li>
+<li>msisdn:  The phone number of the user</li>
 <li>password: The password of the user</li>
 <li>password_confirmation: The password confirmation, should be same as user</li>
 </ul>
@@ -107,7 +107,7 @@
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>{
-</span><span class='line'>  "email": "user2@example.com",
+</span><span class='line'>  "msisdn": "84932466",
 </span><span class='line'>  "password": "12345678",
 </span><span class='line'>  "password_confirmation": "12345678"
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
@@ -121,7 +121,7 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
-</span><span class='line'>  "email": "user2@example.com",
+</span><span class='line'>  "msisdn": "84932466",
 </span><span class='line'>  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
 </span><span class='line'>  "valid_for_authentication": true
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
@@ -130,7 +130,7 @@
 <p>If register successful, the server returns the following attributes,</p>
 
 <ul>
-<li>email: The email of the user</li>
+<li>msisdn: The phone number of the user</li>
 <li>authentication_token: A token for the following user access</li>
 <li>valid_for_authentication: Usually be true. Will be false if the user is locked.</li>
 </ul>
@@ -151,7 +151,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
 </span><span class='line'>  "error": "Invalid resource. Please fix errors and try again.",
 </span><span class='line'>  "errors": {
-</span><span class='line'>    "email": [
+</span><span class='line'>    "msisdn": [
 </span><span class='line'>      "has already been taken"
 </span><span class='line'>    ]
 </span><span class='line'>  }
