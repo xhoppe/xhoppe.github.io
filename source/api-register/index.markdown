@@ -17,7 +17,7 @@ Here is the URL for user registration,
 
 Expected parameters in the body
 
-- email:  The email of the user
+- msisdn:  The phone number of the user
 - password: The password of the user
 - password_confirmation: The password confirmation, should be same as user
 
@@ -29,7 +29,7 @@ POST /api/v1/users
 
 
 {
-  "email": "user2@example.com",
+  "msisdn": "84932466",
   "password": "12345678",
   "password_confirmation": "12345678"
 }
@@ -40,7 +40,7 @@ POST /api/v1/users
 {% codeblock %}
 
 {
-  "email": "user2@example.com",
+  "msisdn": "84932466",
   "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
   "valid_for_authentication": true
 }
@@ -49,7 +49,7 @@ POST /api/v1/users
 
 If register successful, the server returns the following attributes,
 
-- email: The email of the user
+- msisdn: The phone number of the user
 - authentication_token: A token for the following user access
 - valid_for_authentication: Usually be true. Will be false if the user is locked.
 
@@ -62,7 +62,7 @@ If the register is failed, the server will return an error response, for example
 {
   "error": "Invalid resource. Please fix errors and try again.",
   "errors": {
-    "email": [
+    "msisdn": [
       "has already been taken"
     ]
   }
