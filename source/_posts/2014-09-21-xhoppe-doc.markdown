@@ -16,3 +16,5 @@ Here is the Xhoppe doc,
 [Registration API](/api-register)
 
 [Authentication API](/api-authentication)
+
+[Products API](/product-api)
