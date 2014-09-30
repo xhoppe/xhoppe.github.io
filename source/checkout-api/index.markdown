@@ -40,7 +40,7 @@ The body could be the line items like this,
   ]
 }
 
-{% endcodeblock}
+{% endcodeblock %}
 
 The expected response is as following,
 
@@ -95,7 +95,7 @@ An expected request is,
   }
 }
 
-{% endcodeblock}
+{% endcodeblock %}
 
 
 ## Payment
