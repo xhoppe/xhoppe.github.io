@@ -41,8 +41,7 @@ POST /api/v1/users
 
 {
   "msisdn": "84932466",
-  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
-  "valid_for_authentication": true
+  "valid_for_authentication": false
 }
 
 {% endcodeblock %}
@@ -50,8 +49,7 @@ POST /api/v1/users
 If register successful, the server returns the following attributes,
 
 - msisdn: The phone number of the user
-- authentication_token: A token for the following user access
-- valid_for_authentication: Usually be true. Will be false if the user is locked.
+- valid_for_authentication: Will be false if the user is locked.
 
 ### Sample error response
 
@@ -69,3 +67,54 @@ If the register is failed, the server will return an error response, for example
 }
 
 {% endcodeblock %}
+
+## Verification code
+After the user is registered, a SMS will be send to the user, the user needs to input this verification code to be enabled.
+
+`POST /api/v1/users/verify`
+
+Expected parameters in the body
+
+- code:  The verification code received by the user.
+
+### Sample Request
+
+{% codeblock %}
+
+POST /api/v1/users/verify
+
+{
+  "code": "323445"
+}
+
+{% endcodeblock %}
+
+### Sample Response
+{% codeblock %}
+
+{
+  "msisdn": "84932466",
+  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
+  "valid_for_authentication": true
+}
+
+{% endcodeblock %}
+
+If the verification is successful, it will return the authentication_token to the client.
+
+## Forget password
+If the user forgets his password, he could recover by call **Forget password** API to recover. 
+
+
+`PUT /api/v1/users/forget_password`
+
+Expected parameters in the body
+
+- msisdn:  The phone number of the user
+
+If successful, it returns a 200 response.
+
+## Recover password
+TODO: Current mechanism seems not secure.
+
+

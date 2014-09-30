@@ -39,7 +39,16 @@ The REST API uses different HTTP verbs to differentiate the actions the client w
 - PUT
 - DELETE
 
+## Datetime
+All DATETIME and timestamps are returned in ISO 8601 format:  `YYYY-MM-DDTHH:MM:SSZ`
+
 ## Authentication
 
-TBD
+Some API needs authentication. The authentication is first logon through the authentication API. If authentication is successful, it will return an authentication_token to the client. For the API that requires authentication, the client should set the authentication token as a custom HTTP header, the header name is `X-Xhoppe-Token`,for example, 
+
+`X-Xhoppe-Token: Uzzuxk4yz1_4sCX_hM86`
+
+If the authentication is failed, the server will return a 401 Unauthorized HTTP error code.
+
+
 

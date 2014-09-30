@@ -11,6 +11,7 @@ Here is the Xhoppe doc,
 [User doc](/user-doc)
 
 
+
 [API doc](/api-doc)
 
 [Registration API](/api-register)
@@ -18,3 +19,9 @@ Here is the Xhoppe doc,
 [Authentication API](/api-authentication)
 
 [Products API](/product-api)
+
+[Checkout and Orders API](/checkout-api)
+
+[Scanable API](/scanable-api)
+
+[Coupon API](/coupon-api)
