@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Checkout Api - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Checkout Api Sep 30th, 2014 9:40 pm Here we describe the checkout API. An order is a list of line items. Each line item has a variant and a quantity &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xhoppe.github.io/checkout-api">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xhoppe.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Checkout Api</h1>
+    <p class="meta">
+
+
+
+
+<time class='entry-date' datetime='2014-09-30T21:40:00+09:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:40 pm</span></time></p>
+  </header>
+  
+  <p>Here we describe the checkout API.</p>
+
+<p>An order is a list of line items. Each line item has a variant and a quantity. For example, one order could have 2 line items: 1 iphone 6 and 2 LG G3.</p>
+
+<p>When the user adds a product into the shopping cart, the cart is stored at the client side. And then the user clicks the <strong>Checkout</strong> button, here is to create an order.</p>
+
+<p>To checkout involves 3 steps:</p>
+
+<ol>
+<li>Create an order and add line items into it</li>
+<li>Set the delivery address, this step will calculate the shipment fee</li>
+<li>Pay the order</li>
+</ol>
+
+
+<h2>Create an order</h2>
+
+<p>To create an empty order</p>
+
+<p><code>POST /api/orders.json</code></p>
+
+<p>The body could be the line items like this,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;line_items&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;variant_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;quantity&quot;</span><span class="p">:</span> <span class="mi">5</span>
+</span><span class='line'>  <span class="p">},</span>  <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;variant_id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;quantity&quot;</span><span class="p">:</span> <span class="mi">3</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The expected response is as following,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;number&quot;</span><span class="p">:</span> <span class="s2">&quot;R307128032&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;item_total&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;ship_total&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;cart&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;adjustment_total&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;user_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;created_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-07-06T18:52:33.724Z&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;updated_at&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-07-06T18:52:33.752Z&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;completed_at&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;payment_total&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;shipment_state&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;payment_state&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;display_item_total&quot;</span><span class="p">:</span> <span class="s2">&quot;$0.00&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;display_total&quot;</span><span class="p">:</span> <span class="s2">&quot;$0.00&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;display_ship_total&quot;</span><span class="p">:</span> <span class="s2">&quot;$0.00&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;display_tax_total&quot;</span><span class="p">:</span> <span class="s2">&quot;$0.00&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;bill_address&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;ship_address&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;line_items&quot;</span><span class="p">:</span> <span class="p">[],</span>
+</span><span class='line'>  <span class="nt">&quot;payments&quot;</span><span class="p">:</span> <span class="p">[]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Update delivery address</h2>
+
+<p>To update the delivery address, use the following</p>
+
+<p><code>POST /api/orders/#{id}.json</code></p>
+
+<p>The #{id} is the order id.</p>
+
+<p>An expected request is,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;delivery_address&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;firstname&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;lastname&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;address1&quot;</span><span class="p">:</span> <span class="s2">&quot;7735 Old Georgetown Road&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;phone&quot;</span><span class="p">:</span> <span class="s2">&quot;3014445002&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;zipcode&quot;</span><span class="p">:</span> <span class="s2">&quot;139941&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Payment</h2>
+
+<p>The payment needs to be discussed</p>
+
+<p>TBD.</p>
+
+<h2>My orders</h2>
+
+<p>To get the orders of a user,</p>
+
+<p><code>GET /api/orders.json</code></p>
+
+<p>This method will return all orders of a user.</p>
+
+  
+    <footer>
+      <p class="meta">
+        
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-30T21:40:00+09:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:40 pm</span></time>
+        
+      </p>
+      
+        <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://xhoppe.github.io/checkout-api/index.html" data-via="" data-counturl="http://xhoppe.github.io/checkout-api/index.html" >Tweet</a>
+  
+  
+  
+</div>
+
+      
+    </footer>
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/21/xhoppe-doc/">Xhoppe-doc</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -110,9 +110,17 @@
 </ul>
 
 
+<h2>Datetime</h2>
+
+<p>All DATETIME and timestamps are returned in ISO 8601 format:  <code>YYYY-MM-DDTHH:MM:SSZ</code></p>
+
 <h2>Authentication</h2>
 
-<p>TBD</p>
+<p>Some API needs authentication. The authentication is first logon through the authentication API. If authentication is successful, it will return an authentication_token to the client. For the API that requires authentication, the client should set the authentication token as a custom HTTP header, the header name is <code>X-Xhoppe-Token</code>,for example,</p>
+
+<p><code>X-Xhoppe-Token: Uzzuxk4yz1_4sCX_hM86</code></p>
+
+<p>If the authentication is failed, the server will return a 401 Unauthorized HTTP error code.</p>
 
   
     <footer>

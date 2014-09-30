@@ -119,11 +119,9 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
 </span><span class='line'>  "msisdn": "84932466",
-</span><span class='line'>  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
-</span><span class='line'>  "valid_for_authentication": true
+</span><span class='line'>  "valid_for_authentication": false
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -131,8 +129,7 @@
 
 <ul>
 <li>msisdn: The phone number of the user</li>
-<li>authentication_token: A token for the following user access</li>
-<li>valid_for_authentication: Usually be true. Will be false if the user is locked.</li>
+<li>valid_for_authentication: Will be false if the user is locked.</li>
 </ul>
 
 
@@ -157,6 +154,68 @@
 </span><span class='line'>  }
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
+
+<h2>Verification code</h2>
+
+<p>After the user is registered, a SMS will be send to the user, the user needs to input this verification code to be enabled.</p>
+
+<p><code>POST /api/v1/users/verify</code></p>
+
+<p>Expected parameters in the body</p>
+
+<ul>
+<li>code:  The verification code received by the user.</li>
+</ul>
+
+
+<h3>Sample Request</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/verify
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>  "code": "323445"
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Sample Response</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
+</span><span class='line'>  "valid_for_authentication": true
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If the verification is successful, it will return the authentication_token to the client.</p>
+
+<h2>Forget password</h2>
+
+<p>If the user forgets his password, he could recover by call <strong>Forget password</strong> API to recover.</p>
+
+<p><code>PUT /api/v1/users/forget_password</code></p>
+
+<p>Expected parameters in the body</p>
+
+<ul>
+<li>msisdn:  The phone number of the user</li>
+</ul>
+
+
+<p>If successful, it returns a 200 response.</p>
+
+<h2>Recover password</h2>
+
+<p>TODO: Current mechanism seems not secure.</p>
 
   
     <footer>
