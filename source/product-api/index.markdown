@@ -11,7 +11,7 @@ Here we describe the API for products. The mobile client get the products throug
 
 Firstly we need to create moodstocks images for products. Like the following figure,
 
-{% img images/moodstocks_imgs.png  %}
+{% img /images/moodstocks_imgs.png  %}
 
 When you create a moodstocks image, the server will upload this image to moodstocks server and add it to offline. Then the client could call moodstocks API to match an image, if it finds the match, it could get the moodstocks image id. And then it calls the following API to get product information,
 
