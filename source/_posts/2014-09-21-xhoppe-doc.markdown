@@ -3,7 +3,7 @@ layout: post
 title: "xhoppe-doc"
 date: 2014-09-21 21:24:36 +0930
 comments: true
-categories: 
+categories:
 ---
 
 Here is the Xhoppe doc,
@@ -14,14 +14,14 @@ Here is the Xhoppe doc,
 
 [API doc](/api-doc)
 
-[Registration API](/api-register)
+[Registration API](/api-register) (finished)
 
-[Authentication API](/api-authentication)
+[Authentication API](/api-authentication) (finished)
 
-[Products API](/product-api)
+[Products API](/product-api) (finished)
 
-[Checkout and Orders API](/checkout-api)
+[Checkout and Orders API](/checkout-api) (finished)
 
-[Scanable API](/scanable-api)
+[Scannable API](/scanable-api)
 
 [Coupon API](/coupon-api)
