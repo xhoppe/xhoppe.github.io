@@ -20,7 +20,7 @@ Here is the Xhoppe doc,
 
 [Products API](/product-api) (finished)
 
-[Checkout and Orders API](/checkout-api) (finished)
+[Checkout and Orders API](/checkout-api) (finished except MyOrders API)
 
 [Scannable API](/scanable-api)
 
