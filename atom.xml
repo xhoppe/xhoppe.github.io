@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://xhoppe.github.io/atom.xml" rel="self"/>
   <link href="http://xhoppe.github.io/"/>
-  <updated>2014-10-08T23:03:40+10:30</updated>
+  <updated>2014-10-10T21:54:01+10:30</updated>
   <id>http://xhoppe.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -24,15 +24,15 @@
 
 <p><a href="http://xhoppe.github.io/api-doc">API doc</a></p>
 
-<p><a href="http://xhoppe.github.io/api-register">Registration API</a></p>
+<p><a href="http://xhoppe.github.io/api-register">Registration API</a> (finished)</p>
 
-<p><a href="http://xhoppe.github.io/api-authentication">Authentication API</a></p>
+<p><a href="http://xhoppe.github.io/api-authentication">Authentication API</a> (finished)</p>
 
-<p><a href="http://xhoppe.github.io/product-api">Products API</a></p>
+<p><a href="http://xhoppe.github.io/product-api">Products API</a> (finished)</p>
 
-<p><a href="http://xhoppe.github.io/checkout-api">Checkout and Orders API</a></p>
+<p><a href="http://xhoppe.github.io/checkout-api">Checkout and Orders API</a> (finished except MyOrders API)</p>
 
-<p><a href="http://xhoppe.github.io/scanable-api">Scanable API</a></p>
+<p><a href="http://xhoppe.github.io/scanable-api">Scannable API</a></p>
 
 <p><a href="http://xhoppe.github.io/coupon-api">Coupon API</a></p>
 ]]></content>
