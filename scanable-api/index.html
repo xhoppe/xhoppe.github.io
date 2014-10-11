@@ -80,9 +80,42 @@
 
 <p>The user uses the following API to get a scanable</p>
 
-<p><code>GET /api/v1/scanable/#{moodstocks_image_id}/by_moodstocks_image</code></p>
+<p><code>GET /api/v1/scannable/#{moodstocks_image_id}/by_moodstocks_image</code></p>
 
-<p>If the result is a product, it could return response like,</p>
+<p>This method either returns a coupon or a product. In the response there is a <strong>type</strong> attribute, which tells you it&rsquo;s a coupon or product</p>
+
+<p>If the result is a coupon, it could return response like,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="err">id:</span> <span class="err">29,</span>
+</span><span class='line'>  <span class="err">name:</span> <span class="nt">&quot;test2&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="err">type:</span> <span class="nt">&quot;Coupon&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="err">description:</span> <span class="nt">&quot;test2&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="err">images:</span> <span class="err">[</span>
+</span><span class='line'>    <span class="err">{</span>
+</span><span class='line'>    <span class="err">url:</span> <span class="nt">&quot;/uploads/image/image/63/20140424085015281.jpg&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="err">medium_url:</span> <span class="nt">&quot;/uploads/image/image/63/medium_20140424085015281.jpg&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="err">thumb_url:</span> <span class="nt">&quot;/uploads/image/image/63/thumb_20140424085015281.jpg&quot;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="err">]</span>
+</span><span class='line'><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If the result is a product, it could return response like</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -128,13 +161,15 @@
 <span class='line-number'>42</span>
 <span class='line-number'>43</span>
 <span class='line-number'>44</span>
+<span class='line-number'>45</span>
 </pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="err">id:</span> <span class="err">2,</span>
-</span><span class='line'>  <span class="err">type:</span> <span class="nt">&quot;product&quot;</span><span class="p">,</span>
 </span><span class='line'>  <span class="err">sku:</span> <span class="nt">&quot;&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="err">type:</span> <span class="nt">&quot;Product&quot;</span><span class="p">,</span>
 </span><span class='line'>  <span class="err">description:</span> <span class="nt">&quot;&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="err">price:</span> <span class="nt">&quot;$668&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="err">price_amount:</span> <span class="err">668,</span>
+</span><span class='line'>  <span class="err">display_price:</span> <span class="nt">&quot;$100&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="err">price:</span> <span class="err">100,</span>
+</span><span class='line'>  <span class="err">price_cents:</span> <span class="err">10000,</span>
 </span><span class='line'>  <span class="err">has_variants:</span> <span class="err">true,</span>
 </span><span class='line'>  <span class="err">images:</span> <span class="err">[</span>
 </span><span class='line'>    <span class="err">{</span>
@@ -175,7 +210,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>In the above response, there is a type field whose value is <strong>product</strong>. If it&rsquo;s a coupon, then the type value will be coupon.</p>
+<p>The client should use the <strong>type</strong> attribute in response to react differently.</p>
 
   
     <footer>
