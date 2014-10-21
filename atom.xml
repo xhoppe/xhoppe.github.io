@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://xhoppe.github.io/atom.xml" rel="self"/>
   <link href="http://xhoppe.github.io/"/>
-  <updated>2014-10-11T10:44:24+10:30</updated>
+  <updated>2014-10-21T18:23:29+10:30</updated>
   <id>http://xhoppe.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -32,9 +32,11 @@
 
 <p><a href="http://xhoppe.github.io/checkout-api">Checkout and Orders API</a> (finished except MyOrders API)</p>
 
-<p><a href="http://xhoppe.github.io/scanable-api">Scannable API</a></p>
+<p><a href="http://xhoppe.github.io/scanable-api">Scannable API</a> (finished)</p>
 
 <p><a href="http://xhoppe.github.io/coupon-api">Coupon API</a></p>
+
+<p><a href="http://xhoppe.github.io/redeem-api">Redeem API</a></p>
 ]]></content>
   </entry>
   
