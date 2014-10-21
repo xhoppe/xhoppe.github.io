@@ -28,8 +28,9 @@ A sample response is like following,
   id: 2,
   sku: "",
   description: "",
-  price: "$668",
-  price_amount: 668,
+  display_price: "$100",
+  price: 100,
+  price_cents: 10000,
   has_variants: true,
   images: [
     {

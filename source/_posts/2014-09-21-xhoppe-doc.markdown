@@ -22,6 +22,8 @@ Here is the Xhoppe doc,
 
 [Checkout and Orders API](/checkout-api) (finished except MyOrders API)
 
-[Scannable API](/scanable-api)
+[Scannable API](/scanable-api) (finished)
 
 [Coupon API](/coupon-api)
+
+[Redeem API](/redeem-api)

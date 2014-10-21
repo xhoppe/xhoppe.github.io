@@ -22,7 +22,7 @@ To checkout involves 2 steps, according to previous discussion:
 
 To create an empty order
 
-`POST /api/orders.json`
+`POST /api/v1/orders.json`
 
 The body could be the line items like this,
 
