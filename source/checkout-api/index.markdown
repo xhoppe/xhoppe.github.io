@@ -13,7 +13,7 @@ An order is a list of line items. Each line item has a variant and a quantity. F
 
 When the user adds a product into the shopping cart, the cart is stored at the client side. And then the user clicks the **Checkout** button, here is to create an order.
 
-To checkout involves 3 steps: 
+To checkout involves 3 steps:
 
 1. Create an order and add line items into it
 2. Set the delivery address, this step will calculate the shipment fee
@@ -75,7 +75,7 @@ The expected response is as following,
 
 ## Update delivery address
 
-To update the delivery address, use the following 
+To update the delivery address, use the following
 
 `POST /api/orders/#{id}.json`
 
@@ -106,9 +106,27 @@ TBD.
 
 
 ## My orders
-To get the orders of a user, 
+To get the orders of a user,
 
 `GET /api/orders.json`
 
 This method will return all orders of a user.
+
+
+## 库存的处理
+目前的库存将采用下面的方式，当用户创建一个order时，如果库存不足，服务端会返回下面的错误,
+
+{% codeblock lang:json %}
+
+{
+  "errors" : {
+    "variants" : ["Can't fulfill stock of Product XXX Variant Size:L"]
+  }
+}
+
+{% endcodeblock %}
+
+
+当一个order创建后，该库存会保留，比如一个variant开始的库存是10， 如果用户下单买了3个，那么variant
+的库存变为7，如果5小时内用户不付款的话该order将删除，订单删除的时候库存会复原为10个。
 
