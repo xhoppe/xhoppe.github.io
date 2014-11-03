@@ -12,18 +12,41 @@ When the user scans an image, it could return either a product or a coupon. Eith
 
 The user uses the following API to get a scanable
 
-`GET /api/v1/scanable/#{moodstocks_image_id}/by_moodstocks_image`
+`GET /api/v1/scannable/#{moodstocks_image_id}/by_moodstocks_image`
 
-If the result is a product, it could return response like,
+This method either returns a coupon or a product. In the response there is a **type** attribute, which tells you it's a coupon or product
+
+If the result is a coupon, it could return response like,
 
 {% codeblock lang:json %}
 {
+  id: 29,
+  name: "test2",
+  type: "Coupon",
+  description: "test2",
+  images: [
+    {
+    url: "/uploads/image/image/63/20140424085015281.jpg",
+    medium_url: "/uploads/image/image/63/medium_20140424085015281.jpg",
+    thumb_url: "/uploads/image/image/63/thumb_20140424085015281.jpg"
+    }
+  ]
+}
+
+{% endcodeblock %}
+
+If the result is a product, it could return response like
+
+{% codeblock lang:json %}
+
+{
   id: 2,
-  type: "product",
   sku: "",
+  type: "Product",
   description: "",
-  price: "$668",
-  price_amount: 668,
+  display_price: "$100",
+  price: 100,
+  price_cents: 10000,
   has_variants: true,
   images: [
     {
@@ -62,8 +85,9 @@ If the result is a product, it could return response like,
   ]
 }
 
+
 {% endcodeblock %}
 
 
-In the above response, there is a type field whose value is **product**. If it's a coupon, then the type value will be coupon.
+The client should use the **type** attribute in response to react differently.
 
