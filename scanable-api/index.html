@@ -212,6 +212,221 @@
 
 <p>The client should use the <strong>type</strong> attribute in response to react differently.</p>
 
+<h2>variants的select</h2>
+
+<p>product增加了两个elements: available_options 和 filtered_variants.</p>
+
+<p>比如我们有一个product，他有两个option types：</p>
+
+<ul>
+<li>Size: S, L</li>
+<li>Color: Red, Green, White</li>
+</ul>
+
+
+<p>他有四个variant，</p>
+
+<ul>
+<li>Size: S, Color: Red</li>
+<li>Size: L, Color: Red</li>
+<li>Size: S, Color: Green</li>
+<li>Size: L, Color: Green</li>
+</ul>
+
+
+<p>如果访问scannable不带参数的话，访问这个product会返回如下的json</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;sku&quot;</span><span class="err">=&gt;nil</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Fantastic Wooden Hat&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Product&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;description&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="s2">&quot;Quaerat magni odio quas illum culpa commodi. Voluptates necessitatibus eius soluta voluptatem porro aut. Soluta id sit aut quis. Velit est odit similique nostrum tempore ducimus deleniti.&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;has_variants&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'> <span class="nt">&quot;available_options&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size&quot;</span><span class="p">,</span> <span class="nt">&quot;available_values&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;S&quot;</span><span class="p">},</span> <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;L&quot;</span><span class="p">}]},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Color&quot;</span><span class="p">,</span> <span class="nt">&quot;available_values&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">3</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Red&quot;</span><span class="p">},</span> <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">4</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Green&quot;</span><span class="p">}]}],</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'> <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span><span class="p">[],</span>
+</span><span class='line'> <span class="nt">&quot;product_properties&quot;</span><span class="err">=&gt;</span><span class="p">[],</span>
+</span><span class='line'> <span class="nt">&quot;variants&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">3</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: S, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">4</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: S, Color: Red&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">5</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Red&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">}],</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'> <span class="nt">&quot;filtered_variants&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">3</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: S, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">4</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: S, Color: Red&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">5</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Red&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">}]}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当不带任何参数式， filtered_variants 和 variants的内容一样，available_options返回variants里面用到的option_types和对应的option_values.</p>
+
+<p>根据available_options, 客户端可以创建一个类似如下的界面，</p>
+
+<p><img class="[class names]" src="/images/select_variant1"></p>
+
+<p>当用户选择Size为L的时候，客户端向服务端重新发送同样的请求，但是加上参数 <code>?Size=L</code>, 这时服务端会返回，</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">7</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;sku&quot;</span><span class="err">=&gt;nil</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Fantastic Wooden Pants&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Product&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;description&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="s2">&quot;Tenetur cum autem est. Blanditiis sequi aut distinctio qui repellendus quibusdam est. Nulla aliquam qui corporis inventore.&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;has_variants&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'> <span class="nt">&quot;available_options&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">13</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size&quot;</span><span class="p">,</span> <span class="nt">&quot;available_values&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">32</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;L&quot;</span><span class="p">}]},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">14</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Color&quot;</span><span class="p">,</span> <span class="nt">&quot;available_values&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">33</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Red&quot;</span><span class="p">},</span> <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">34</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Green&quot;</span><span class="p">}]}],</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'> <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span><span class="p">[],</span>
+</span><span class='line'> <span class="nt">&quot;product_properties&quot;</span><span class="err">=&gt;</span><span class="p">[],</span>
+</span><span class='line'> <span class="nt">&quot;variants&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">32</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">33</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: S, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">34</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: S, Color: Red&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">35</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Red&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">}],</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'> <span class="nt">&quot;filtered_variants&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">32</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">35</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Red&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">}]}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>注意上面的available_options经过了过滤，只返回Size为L的variants的options，客户端收到response后可以过滤Color，上面的response中，filtered_variants也过滤为只包含Size L的variants</p>
+
+<p>接下来如果用户再选择Color为Green，客户端向服务端再次发送请求，并且加上参数<code>?Size=L&amp;Color=Green</code>,这时服务器返回结果</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">10</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;sku&quot;</span><span class="err">=&gt;nil</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Gorgeous Concrete Shirt&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Product&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;description&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="s2">&quot;Quasi dolores id. Expedita deserunt quos commodi aut quod. Consequuntur placeat non voluptate ea nisi est minus. In aut neque aspernatur accusantium ducimus ut amet.&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;has_variants&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;available_options&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">19</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size&quot;</span><span class="p">,</span> <span class="nt">&quot;available_values&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">47</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;L&quot;</span><span class="p">}]},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">20</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Color&quot;</span><span class="p">,</span> <span class="nt">&quot;available_values&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">49</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Green&quot;</span><span class="p">}]}],</span>
+</span><span class='line'> <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span><span class="p">[],</span>
+</span><span class='line'> <span class="nt">&quot;product_properties&quot;</span><span class="err">=&gt;</span><span class="p">[],</span>
+</span><span class='line'> <span class="nt">&quot;variants&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">47</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">48</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: S, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">49</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: S, Color: Red&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">50</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Red&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">}],</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'> <span class="nt">&quot;filtered_variants&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">47</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">}]}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以看到filtered_variants只含一个element，即为用户最后选择的variant</p>
+
   
     <footer>
       <p class="meta">
