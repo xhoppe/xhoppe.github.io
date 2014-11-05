@@ -70,3 +70,7 @@ A sample response is like following,
 }
 
 {% endcodeblock %}
+
+
+## Filter options
+When 

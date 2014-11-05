@@ -9,6 +9,8 @@ footer: true
 
 Here we describe the API for user authentication.
 
+{% img [class names] /images/Log_in_screen.png 400x200 %}
+
 Here is the URL for user authentication,
 
 `POST api/v1/login`
@@ -32,6 +34,7 @@ Expected parameters in the body
 {% codeblock %}
 {
   "msisdn": "84932466",
+  "username": "Mike Jackson"
   "authentication_token": "Uzzuxk4yz1_4sCX_hM86",
   "valid_for_authentication": true
 }
@@ -40,6 +43,7 @@ Expected parameters in the body
 If authentication is successful, the server returns the following attributes,
 
 - msisdn: The phone number of the user
+- username: the username
 - authentication_token: A token for the following user access
-- valid_for_authentication: Usually be true. Will be false if the user is locked.
+- valid_for_authentication: Usually be true. Will be false if the user is locked or unverified.
 

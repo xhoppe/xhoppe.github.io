@@ -18,6 +18,10 @@ Here is the Xhoppe doc,
 
 [Authentication API](/api-authentication) (finished)
 
+[User Info API](/user-info-api)
+
+[Messages API](/messages-api)
+
 [Products API](/product-api) (finished)
 
 [Checkout and Orders API](/checkout-api) (finished except MyOrders API)
@@ -26,4 +30,4 @@ Here is the Xhoppe doc,
 
 [Coupon API](/coupon-api)
 
-[Redeem API](/redeem-api)
+[Redeem API](/redeem-api) (finished)
