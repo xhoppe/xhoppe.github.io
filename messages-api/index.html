@@ -94,25 +94,45 @@
 
 <p>The response will be like following</p>
 
-<p>[
-  {
-    id: 1,
-    title: &lsquo;Free ice cream&rsquo;,
-    body: &lsquo;ljsfjsfjslfjs ljdslj ljdsflsjdf &rsquo;,
-    created_at: &lsquo;2014-11-22T12:00:00Z&rsquo;,
-    image: &lsquo;<a href="http://test.xhop.pe/aaa/aaa.jpg">http://test.xhop.pe/aaa/aaa.jpg</a>&rsquo;,
-    ms_id: 3
-  },</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[
+</span><span class='line'>  {
+</span><span class='line'>    id: 1,
+</span><span class='line'>    title: 'Free ice cream',
+</span><span class='line'>    body: 'ljsfjsfjslfjs ljdslj ljdsflsjdf ',
+</span><span class='line'>    created_at: '2014-11-22T12:00:00Z',
+</span><span class='line'>    image: 'http://test.xhop.pe/aaa/aaa.jpg',
+</span><span class='line'>    ms_id: 3
+</span><span class='line'>  },
+</span><span class='line'>
+</span><span class='line'>  {
+</span><span class='line'>    id: 2,
+</span><span class='line'>    title: 'Free ice cream',
+</span><span class='line'>    body: 'ljsfjsfjslfjs ljdslj ljdsflsjdf ',
+</span><span class='line'>    created_at: '2014-11-22T12:00:00Z',
+</span><span class='line'>    image: 'http://test.xhop.pe/aaa/aaa.jpg',
+</span><span class='line'>    ms_id: 
+</span><span class='line'>  }
+</span><span class='line'>]</span></code></pre></td></tr></table></div></figure>
 
-<p>  {
-    id: 2,
-    title: &lsquo;Free ice cream&rsquo;,
-    body: &lsquo;ljsfjsfjslfjs ljdslj ljdsflsjdf &rsquo;,
-    created_at: &lsquo;2014-11-22T12:00:00Z&rsquo;,
-    image: &lsquo;<a href="http://test.xhop.pe/aaa/aaa.jpg">http://test.xhop.pe/aaa/aaa.jpg</a>&rsquo;,
-    ms_id:
-  }
-]</p>
 
 <p>The ms_id is the moodstocks image id, it could be nil, if it&rsquo;s not nil, then when the user clicks the message, the client can invoke the scannable api to get the product or coupon.</p>
 
