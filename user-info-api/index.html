@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>User Info Api - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="User Info Api Nov 5th, 2014 10:22 pm Here we describe User Info API User Info API needs authentication Get User Info To get the user info the client &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xhoppe.github.io/user-info-api">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xhoppe.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">User Info Api</h1>
+    <p class="meta">
+
+
+
+
+<time class='entry-date' datetime='2014-11-05T22:22:00+10:30'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:22 pm</span></time></p>
+  </header>
+  
+  <p>Here we describe User Info API</p>
+
+<p><strong>User Info API needs authentication</strong></p>
+
+<p><img class="[class names]" src="/images/Enter_user_info.png" width="400"></p>
+
+<h2>Get User Info</h2>
+
+<p>To get the user info the client should use following API</p>
+
+<p><code>GET /user_info</code></p>
+
+<p>The server will return information like following,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "username": "Mike Jackson",
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "email": "aaa@example.com",
+</span><span class='line'>  "billing_address": {
+</span><span class='line'>    "address1": "12 Ayer Rajah Cresent",
+</span><span class='line'>    "address2": "",
+</span><span class='line'>    "zipcode": "139943"
+</span><span class='line'>  }
+</span><span class='line'>  "shipping_address_same_as_billing": true
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "username": "Mike Jackson",
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "email": "aaa@example.com",
+</span><span class='line'>  "billing_address": {
+</span><span class='line'>    "address1": "12 Ayer Rajah Cresent",
+</span><span class='line'>    "address2": "",
+</span><span class='line'>    "zipcode": "139943"
+</span><span class='line'>  }
+</span><span class='line'>  "shipping_address_same_as_billing": false,
+</span><span class='line'>  "shipping_address": {
+</span><span class='line'>    "address1": "12 Orchard Road",
+</span><span class='line'>    "address2": "",
+</span><span class='line'>    "zipcode": "130000"
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Update User info</h2>
+
+<p>To Update User info, the client uses following API,</p>
+
+<p><code>PUT /user_info</code></p>
+
+<p>The parameter is like following,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PUT /user_info
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>  "username": "Mike Jackson",
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "email": "aaa@example.com",
+</span><span class='line'>  "billing_address": {
+</span><span class='line'>    "address1": "12 Ayer Rajah Cresent",
+</span><span class='line'>    "address2": "",
+</span><span class='line'>    "zipcode": "139943"
+</span><span class='line'>  }
+</span><span class='line'>  "shipping_address_same_as_billing": false,
+</span><span class='line'>  "shipping_address": {
+</span><span class='line'>    "address1": "12 Orchard Road",
+</span><span class='line'>    "address2": "",
+</span><span class='line'>    "zipcode": "130000"
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If successful, the server will return updated infomation same as Get user info.</p>
+
+<p><strong> The server should not store user&rsquo;s credit card number</strong></p>
+
+<p><img class="[class names]" src="/images/My_Profile.png" width="400"></p>
+
+<p>My profile seems could be unified with user info? (discuss)</p>
+
+  
+    <footer>
+      <p class="meta">
+        
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-05T22:22:00+10:30'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:22 pm</span></time>
+        
+      </p>
+      
+        <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://xhoppe.github.io/user-info-api/index.html" data-via="" data-counturl="http://xhoppe.github.io/user-info-api/index.html" >Tweet</a>
+  
+  
+  
+</div>
+
+      
+    </footer>
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/21/xhoppe-doc/">Xhoppe-doc</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

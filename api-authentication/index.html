@@ -78,6 +78,8 @@
   
   <p>Here we describe the API for user authentication.</p>
 
+<p><img class="[class names]" src="/images/Log_in_screen.png" width="400"></p>
+
 <p>Here is the URL for user authentication,</p>
 
 <p><code>POST api/v1/login</code></p>
@@ -109,8 +111,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
 </span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "username": "Mike Jackson"
 </span><span class='line'>  "authentication_token": "Uzzuxk4yz1_4sCX_hM86",
 </span><span class='line'>  "valid_for_authentication": true
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
@@ -120,8 +124,9 @@
 
 <ul>
 <li>msisdn: The phone number of the user</li>
+<li>username: the username</li>
 <li>authentication_token: A token for the following user access</li>
-<li>valid_for_authentication: Usually be true. Will be false if the user is locked.</li>
+<li>valid_for_authentication: Usually be true. Will be false if the user is locked or unverified.</li>
 </ul>
 
 

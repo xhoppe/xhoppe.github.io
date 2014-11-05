@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Coupon Api - My Octopress Blog</title>
+  <title>Messages Api - My Octopress Blog</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Coupon Api Sep 30th, 2014 10:27 pm The client get the coupon information through the scanable Api. And then redeem the coupon through the following &hellip;">
+  <meta name="description" content="Messages Api Nov 5th, 2014 11:06 pm Here we describe the messages API. My messages This API needs authentication &lsquo;GET /messages&rsquo; The Api &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xhoppe.github.io/coupon-api">
+  <link rel="canonical" href="http://xhoppe.github.io/messages-api">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -67,50 +67,82 @@
 <article role="article">
   
   <header>
-    <h1 class="entry-title">Coupon Api</h1>
+    <h1 class="entry-title">Messages Api</h1>
     <p class="meta">
 
 
 
 
-<time class='entry-date' datetime='2014-09-30T22:27:00+09:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:27 pm</span></time></p>
+<time class='entry-date' datetime='2014-11-05T23:06:00+10:30'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:06 pm</span></time></p>
   </header>
   
-  <p>The client get the coupon information through the scanable Api. And then redeem the coupon through the following API.</p>
+  <p>Here we describe the messages API.</p>
 
-<h2>Create coupon</h2>
+<h2>My messages</h2>
 
-<p><strong>This API needs authentication</strong></p>
-
-<p><code>POST /api/v1/redeem</code></p>
-
-<p>The redeem accepts following parameters,</p>
-
-<ul>
-<li>merchant_code:  The merchant code</li>
-</ul>
-
-
-<p><img class="[class names]" src="/images/My_Coupons_gaussian_blur_bg.png" width="400"></p>
-
-<h2>My coupons</h2>
+<p><img class="[class names]" src="/images/My_Messages_Home_Screen_minimized_gaussian_blur_bg.png" width="400"></p>
 
 <p><strong>This API needs authentication</strong></p>
 
-<p><code>GET /api/v1/coupons</code></p>
+<p>&lsquo;GET /messages&rsquo;</p>
 
-<p>This API can accepts parameters,</p>
+<p>The Api accepts a parameter <strong>since</strong>, for example</p>
 
-<ul>
-<li>type: accepts 1 values: redeemed</li>
-</ul>
+<p>&lsquo;GET /messages?since=2014-11-22T12:00:00Z&rsquo;</p>
 
+<p>And it will return only the new messages since that time.</p>
 
-<p>for example,</p>
+<p>The response will be like following</p>
 
-<p><code>GET /api/v1/coupons?type=redeemed</code></p>
+<p>[
+  {
+    id: 1,
+    title: &lsquo;Free ice cream&rsquo;,
+    body: &lsquo;ljsfjsfjslfjs ljdslj ljdsflsjdf &rsquo;,
+    created_at: &lsquo;2014-11-22T12:00:00Z&rsquo;,
+    image: &lsquo;<a href="http://test.xhop.pe/aaa/aaa.jpg">http://test.xhop.pe/aaa/aaa.jpg</a>&rsquo;,
+    ms_id: 3
+  },</p>
 
-<p>The type recent and expiring just stores at client side when the user scans moodstocks image and don&rsquo;t need to access server?</p>
+<p>  {
+    id: 2,
+    title: &lsquo;Free ice cream&rsquo;,
+    body: &lsquo;ljsfjsfjslfjs ljdslj ljdsflsjdf &rsquo;,
+    created_at: &lsquo;2014-11-22T12:00:00Z&rsquo;,
+    image: &lsquo;<a href="http://test.xhop.pe/aaa/aaa.jpg">http://test.xhop.pe/aaa/aaa.jpg</a>&rsquo;,
+    ms_id:
+  }
+]</p>
+
+<p>The ms_id is the moodstocks image id, it could be nil, if it&rsquo;s not nil, then when the user clicks the message, the client can invoke the scannable api to get the product or coupon.</p>
+
+<h2>Delete message</h2>
+
+<p><strong>This API needs authentication</strong></p>
+
+<p>&lsquo;DELETE /messages/#{id}&rsquo;</p>
+
+<p>The id is message id.</p>
+
+<h2>New messages count</h2>
+
+<p><strong>This API needs authentication</strong></p>
+
+<p>&lsquo;GET /messages/new_messages_count&rsquo;</p>
+
+<p>This message accepts a parameter <strong>since</strong></p>
+
+<p>&lsquo;GET /messages/new_messages_count?since=2014-11-22T12:00:00Z&rsquo;</p>
+
+<p>It returns the count of new message.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  new_messages_count: 7
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
 
   
     <footer>
@@ -121,13 +153,13 @@
 
 
 
-<time class='entry-date' datetime='2014-09-30T22:27:00+09:30'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:27 pm</span></time>
+<time class='entry-date' datetime='2014-11-05T23:06:00+10:30'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:06 pm</span></time>
         
       </p>
       
         <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://xhoppe.github.io/coupon-api/index.html" data-via="" data-counturl="http://xhoppe.github.io/coupon-api/index.html" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://xhoppe.github.io/messages-api/index.html" data-via="" data-counturl="http://xhoppe.github.io/messages-api/index.html" >Tweet</a>
   
   
   

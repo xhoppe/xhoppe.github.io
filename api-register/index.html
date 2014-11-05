@@ -80,6 +80,8 @@
 
 <h2>User registration</h2>
 
+<p><img class="[class names]" src="/images/Sign_up_screen.png" width="400"></p>
+
 <p>Here is the URL for user registration,</p>
 
 <p><code>POST /api/v1/users</code></p>
@@ -88,8 +90,8 @@
 
 <ul>
 <li>msisdn:  The phone number of the user</li>
+<li>username: The username</li>
 <li>password: The password of the user</li>
-<li>password_confirmation: The password confirmation, should be same as user</li>
 </ul>
 
 
@@ -108,8 +110,8 @@
 </span><span class='line'>
 </span><span class='line'>{
 </span><span class='line'>  "msisdn": "84932466",
-</span><span class='line'>  "password": "12345678",
-</span><span class='line'>  "password_confirmation": "12345678"
+</span><span class='line'>  "username": "Mike Jackson"
+</span><span class='line'>  "password": "12345678"
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -129,7 +131,7 @@
 
 <ul>
 <li>msisdn: The phone number of the user</li>
-<li>valid_for_authentication: Will be false if the user is locked.</li>
+<li>valid_for_authentication: Will be false if the user is locked or if the user is not verified yet.</li>
 </ul>
 
 
@@ -157,6 +159,8 @@
 
 <h2>Verification code</h2>
 
+<p><img class="[class names]" src="/images/Sign_up_verification.png" width="400"></p>
+
 <p>After the user is registered, a SMS will be send to the user, the user needs to input this verification code to be enabled.</p>
 
 <p><code>POST /api/v1/users/verify</code></p>
@@ -175,10 +179,12 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/verify
 </span><span class='line'>
 </span><span class='line'>{
-</span><span class='line'>  "code": "323445"
+</span><span class='line'>  "msisdn": "84932466"
+</span><span class='line'>  "verification_code": "323445"
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -189,8 +195,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
 </span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "username": "Mike Jackson",
 </span><span class='line'>  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
 </span><span class='line'>  "valid_for_authentication": true
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
@@ -198,7 +206,29 @@
 
 <p>If the verification is successful, it will return the authentication_token to the client.</p>
 
+<h3>Sample error response</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "error": "Invalid resource. Please fix errors and try again.",
+</span><span class='line'>  "errors": {
+</span><span class='line'>    "verification_code": [
+</span><span class='line'>      "not valid"
+</span><span class='line'>    ]
+</span><span class='line'>}
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
 <h2>Forget password</h2>
+
+<p><img class="[class names]" src="/images/Forgot_password.png" width="400"></p>
 
 <p>If the user forgets his password, he could recover by call <strong>Forget password</strong> API to recover.</p>
 
@@ -213,9 +243,57 @@
 
 <p>If successful, it returns a 200 response.</p>
 
+<p>After calling this API, the server will send a verification code to the user by SMS.</p>
+
 <h2>Recover password</h2>
 
-<p>TODO: Current mechanism seems not secure.</p>
+<p>After the user receives the SMS, he should enter the verification code and new password</p>
+
+<h2>Reset password</h2>
+
+<p><img class="[class names]" src="/images/reset_password_dialog_box.png" width="400"></p>
+
+<p>The user can reset his password by this API.</p>
+
+<p><code>PUT /api/v1/users/reset_password</code></p>
+
+<p><strong>This API needs authentication</strong></p>
+
+<p>Expected parameters in the body
+- current_password: the current password
+- password: new password</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/reset_password
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>  "current_password": "12345678"
+</span><span class='line'>  "password": "87654321"
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>if the change is successful, the server return response like</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "username": "Mike Jackson",
+</span><span class='line'>  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
+</span><span class='line'>  "valid_for_authentication": true
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>After the user updates his password, the authentication_token will be regenerated. So the user need to login again.</strong></p>
 
   
     <footer>
