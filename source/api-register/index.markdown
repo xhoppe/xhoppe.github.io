@@ -129,7 +129,7 @@ If the verification is successful, it will return the authentication_token to th
 
 {% img [class names] /images/Forgot_password.png 400x200 %}
 
-If the user forgets his password, he could recover by call **Forget password** API to recover. 
+If the user forgets his password, he could recover by call **Forget password** API to recover.
 
 
 `PUT /api/v1/users/forget_password`
@@ -187,5 +187,65 @@ if the change is successful, the server return response like
 **After the user updates his password, the authentication_token will be regenerated. So the user need to login again.**
 
 
+## Facebook signup
+
+When the user authenticate with facebook, the client will authenticate with Facebook client and send a facebook token
+to the server like following,
+
+{% codeblock %}
+
+POST /api/v1/facebook/signup
+
+{
+  "token": "12sdfs23423"
+}
+
+{% endcodeblock %}
+
+After the server receives the token, it will get the user information from facebook, and then returns the client following
+information as response
+
+
+{% codeblock %}
+
+{
+  "username": "Mike Jackson",
+  "male": true,
+  "birthday": '1984-03-20',
+  "msisdn": "84932466",
+  "email": "aaa@example.com",
+  "facebook_id": "2342lkjdfsf"
+}
+{% endcodeblock %}
+
+The facebook_id is very important, and then the client let the user update information and posts to the server,
+
+{% codeblock %}
+
+POST /api/v1/users
+
+{
+  "msisdn": "84932466",
+  "username": "Mike Jackson"
+  "password": "12345678"
+  "facebook_id": "2342lkjdfsf"
+
+  "male": true,
+  "birthday": '1984-03-20',
+  "msisdn": "84932466",
+  "email": "aaa@example.com",
+  "billing_address": {
+    "address1": "12 Ayer Rajah Cresent",
+    "address2": "",
+    "zipcode": "139943"
+  }
+  "shipping_address_same_as_billing": true
+
+}
+
+{% endcodeblock %}
+
+
+The **facebook_id** must be passed back to the server.
 
 

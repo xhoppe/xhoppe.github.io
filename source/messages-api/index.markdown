@@ -23,7 +23,7 @@ The Api accepts a parameter **since**, for example
 
 And it will return only the new messages since that time.
 
-The response will be like following 
+The response will be like following
 
 [
   {
@@ -32,6 +32,7 @@ The response will be like following
     body: 'ljsfjsfjslfjs ljdslj ljdsflsjdf ',
     created_at: '2014-11-22T12:00:00Z',
     image: 'http://test.xhop.pe/aaa/aaa.jpg',
+    read: true
     ms_id: 3
   },
 
@@ -41,11 +42,13 @@ The response will be like following
     body: 'ljsfjsfjslfjs ljdslj ljdsflsjdf ',
     created_at: '2014-11-22T12:00:00Z',
     image: 'http://test.xhop.pe/aaa/aaa.jpg',
-    ms_id: 
+    read: false
+    ms_id:
   }
 ]
 
-The ms_id is the moodstocks image id, it could be nil, if it's not nil, then when the user clicks the message, the client can invoke the scannable api to get the product or coupon.
+The ms_id is the moodstocks image id, it could be nil, if it's not nil, then when the user clicks the message,
+the client can invoke the scannable api to get the product or coupon.
 
 ## Delete message
 
@@ -61,10 +64,6 @@ The id is message id.
 **This API needs authentication**
 
 'GET /messages/new_messages_count'
-
-This message accepts a parameter **since**
-
-'GET /messages/new_messages_count?since=2014-11-22T12:00:00Z'
 
 It returns the count of new message.
 
