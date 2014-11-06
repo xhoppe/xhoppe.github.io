@@ -25,6 +25,8 @@ And it will return only the new messages since that time.
 
 The response will be like following 
 
+{% codeblock %}
+
 [
   {
     id: 1,
@@ -45,6 +47,7 @@ The response will be like following
   }
 ]
 
+{% endcodeblock %}
 The ms_id is the moodstocks image id, it could be nil, if it's not nil, then when the user clicks the message, the client can invoke the scannable api to get the product or coupon.
 
 ## Delete message

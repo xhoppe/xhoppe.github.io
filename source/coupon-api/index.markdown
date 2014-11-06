@@ -11,7 +11,9 @@ The client get the coupon information through the scanable Api. And then redeem 
 
 
 
-## Create coupon
+## Create redeem
+
+{% img [class names] /images/My_coupon_merchant_redemption_screen_minimized_gaussian_blur_bg.png 400x200 %}
 
 **This API needs authentication**
 
