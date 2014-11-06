@@ -47,3 +47,37 @@ If authentication is successful, the server returns the following attributes,
 - authentication_token: A token for the following user access
 - valid_for_authentication: Usually be true. Will be false if the user is locked or unverified.
 
+## Facebook authentication
+When the user authenticate with facebook, the client will authenticate with Facebook client and send a facebook token
+to the server like following,
+
+`POST /api/v1/facebook/login`
+
+{% codeblock %}
+
+POST /api/v1/facebook/login
+
+{
+  token: '23497joseu234'
+}
+
+
+{% endcodeblock %}
+
+The token is facebook token, then the server will check with facebook if the token is correct or not, if yes, then it will
+create a user in database if the user doesn't exist.
+
+Then it returns same information as normal authentication,
+
+{% codeblock %}
+{
+  "msisdn": "",
+  "username": "Mike Jackson"
+  "authentication_token": "Uzzuxk4yz1_4sCX_hM86",
+  "valid_for_authentication": true
+}
+{% endcodeblock %}
+
+
+**When the user authenticate with facebook, he doesn't necessarily input a mobile number, so the msisdn may be empty**
+

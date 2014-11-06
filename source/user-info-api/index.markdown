@@ -24,6 +24,8 @@ The server will return information like following,
 {% codeblock %}
 {
   "username": "Mike Jackson",
+  "male": true,
+  "birthday": '1984-03-20',
   "msisdn": "84932466",
   "email": "aaa@example.com",
   "billing_address": {
@@ -35,11 +37,13 @@ The server will return information like following,
 }
 {% endcodeblock %}
 
-or 
+or
 
 {% codeblock %}
 {
   "username": "Mike Jackson",
+  "male": true,
+  "birthday": '1984-03-20',
   "msisdn": "84932466",
   "email": "aaa@example.com",
   "billing_address": {
@@ -69,6 +73,8 @@ PUT /user_info
 
 {
   "username": "Mike Jackson",
+  "male": true,
+  "birthday": '1984-03-20',
   "msisdn": "84932466",
   "email": "aaa@example.com",
   "billing_address": {
