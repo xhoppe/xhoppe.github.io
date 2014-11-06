@@ -130,6 +130,46 @@
 </ul>
 
 
+<h2>Facebook authentication</h2>
+
+<p>When the user authenticate with facebook, the client will authenticate with Facebook client and send a facebook token
+to the server like following,</p>
+
+<p><code>POST /api/v1/facebook/login</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/facebook/login
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>  token: '23497joseu234'
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The token is facebook token, then the server will check with facebook if the token is correct or not, if yes, then it will
+create a user in database if the user doesn&rsquo;t exist.</p>
+
+<p>Then it returns same information as normal authentication,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "msisdn": "",
+</span><span class='line'>  "username": "Mike Jackson"
+</span><span class='line'>  "authentication_token": "Uzzuxk4yz1_4sCX_hM86",
+</span><span class='line'>  "valid_for_authentication": true
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>When the user authenticate with facebook, he doesn&rsquo;t necessarily input a mobile number, so the msisdn may be empty</strong></p>
+
   
     <footer>
       <p class="meta">

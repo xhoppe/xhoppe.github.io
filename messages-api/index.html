@@ -113,6 +113,8 @@
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>[
 </span><span class='line'>  {
 </span><span class='line'>    id: 1,
@@ -120,6 +122,7 @@
 </span><span class='line'>    body: 'ljsfjsfjslfjs ljdslj ljdsflsjdf ',
 </span><span class='line'>    created_at: '2014-11-22T12:00:00Z',
 </span><span class='line'>    image: 'http://test.xhop.pe/aaa/aaa.jpg',
+</span><span class='line'>    read: true
 </span><span class='line'>    ms_id: 3
 </span><span class='line'>  },
 </span><span class='line'>
@@ -129,12 +132,14 @@
 </span><span class='line'>    body: 'ljsfjsfjslfjs ljdslj ljdsflsjdf ',
 </span><span class='line'>    created_at: '2014-11-22T12:00:00Z',
 </span><span class='line'>    image: 'http://test.xhop.pe/aaa/aaa.jpg',
-</span><span class='line'>    ms_id: 
+</span><span class='line'>    read: false
+</span><span class='line'>    ms_id:
 </span><span class='line'>  }
 </span><span class='line'>]</span></code></pre></td></tr></table></div></figure>
 
 
-<p>The ms_id is the moodstocks image id, it could be nil, if it&rsquo;s not nil, then when the user clicks the message, the client can invoke the scannable api to get the product or coupon.</p>
+<p>The ms_id is the moodstocks image id, it could be nil, if it&rsquo;s not nil, then when the user clicks the message,
+the client can invoke the scannable api to get the product or coupon.</p>
 
 <h2>Delete message</h2>
 
@@ -149,10 +154,6 @@
 <p><strong>This API needs authentication</strong></p>
 
 <p>&lsquo;GET /messages/new_messages_count&rsquo;</p>
-
-<p>This message accepts a parameter <strong>since</strong></p>
-
-<p>&lsquo;GET /messages/new_messages_count?since=2014-11-22T12:00:00Z&rsquo;</p>
 
 <p>It returns the count of new message.</p>
 

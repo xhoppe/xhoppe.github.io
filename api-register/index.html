@@ -295,6 +295,90 @@
 
 <p><strong>After the user updates his password, the authentication_token will be regenerated. So the user need to login again.</strong></p>
 
+<h2>Facebook signup</h2>
+
+<p>When the user authenticate with facebook, the client will authenticate with Facebook client and send a facebook token
+to the server like following,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/facebook/signup
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>  "token": "12sdfs23423"
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After the server receives the token, it will get the user information from facebook, and then returns the client following
+information as response</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "username": "Mike Jackson",
+</span><span class='line'>  "male": true,
+</span><span class='line'>  "birthday": '1984-03-20',
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "email": "aaa@example.com",
+</span><span class='line'>  "facebook_id": "2342lkjdfsf"
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The facebook_id is very important, and then the client let the user update information and posts to the server,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "username": "Mike Jackson"
+</span><span class='line'>  "password": "12345678"
+</span><span class='line'>  "facebook_id": "2342lkjdfsf"
+</span><span class='line'>
+</span><span class='line'>  "male": true,
+</span><span class='line'>  "birthday": '1984-03-20',
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "email": "aaa@example.com",
+</span><span class='line'>  "billing_address": {
+</span><span class='line'>    "address1": "12 Ayer Rajah Cresent",
+</span><span class='line'>    "address2": "",
+</span><span class='line'>    "zipcode": "139943"
+</span><span class='line'>  }
+</span><span class='line'>  "shipping_address_same_as_billing": true
+</span><span class='line'>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <strong>facebook_id</strong> must be passed back to the server.</p>
+
   
     <footer>
       <p class="meta">
