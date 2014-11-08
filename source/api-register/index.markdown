@@ -89,8 +89,7 @@ Expected parameters in the body
 POST /api/v1/users/verify
 
 {
-  "msisdn": "84932466"
-  "verification_code": "323445"
+  "sms_token": "abcd"
 }
 
 {% endcodeblock %}
@@ -116,7 +115,7 @@ If the verification is successful, it will return the authentication_token to th
 {
   "error": "Invalid resource. Please fix errors and try again.",
   "errors": {
-    "verification_code": [
+    "sms_token": [
       "not valid"
     ]
 }
