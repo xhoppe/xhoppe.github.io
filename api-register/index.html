@@ -179,12 +179,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/verify
 </span><span class='line'>
 </span><span class='line'>{
-</span><span class='line'>  "msisdn": "84932466"
-</span><span class='line'>  "verification_code": "323445"
+</span><span class='line'>  "sms_token": "abcd"
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -219,7 +217,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
 </span><span class='line'>  "error": "Invalid resource. Please fix errors and try again.",
 </span><span class='line'>  "errors": {
-</span><span class='line'>    "verification_code": [
+</span><span class='line'>    "sms_token": [
 </span><span class='line'>      "not valid"
 </span><span class='line'>    ]
 </span><span class='line'>}
