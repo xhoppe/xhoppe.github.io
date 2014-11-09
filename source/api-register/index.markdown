@@ -80,7 +80,7 @@ After the user is registered, a SMS will be send to the user, the user needs to 
 
 Expected parameters in the body
 
-- code:  The verification code received by the user.
+- sms_confirmation_token:  The verification code received by the user.
 
 ### Sample Request
 
@@ -89,7 +89,7 @@ Expected parameters in the body
 POST /api/v1/users/verify
 
 {
-  "sms_token": "abcd"
+  "sms_confirmation_token": "abcd"
 }
 
 {% endcodeblock %}
@@ -108,42 +108,147 @@ POST /api/v1/users/verify
 
 If the verification is successful, it will return the authentication_token to the client.
 
+The SMS confirmation token is case insensitive.
+
 ### Sample error response
+
+If the SMS confirmation token is invalid
 
 {% codeblock %}
 
 {
   "error": "Invalid resource. Please fix errors and try again.",
   "errors": {
-    "sms_token": [
-      "not valid"
+    "sms_confirmation_token": [
+      "is invalid"
     ]
 }
 }
 
 {% endcodeblock %}
 
+If the SMS confirmation token is expired
+
+{% codeblock %}
+
+{
+  "error": "Invalid resource. Please fix errors and try again.",
+  "errors": {
+    "sms_confirmation_token": [
+      "is expired"
+    ]
+}
+}
+
+{% endcodeblock %}
+
+After the SMS is sent, the token is valid for 10 minutes.
+
+## Resend Verify
+If the SMS is sent but the user didn't confirm. He could invoke 'Resend Verify' to send another SMS.
+
+{% codeblock %}
+
+POST /api/v1/users/resend_verify
+
+{
+  "msisdn": "+6584932466"
+}
+
+{% endcodeblock %}
+
+The response should be
+
+{% codeblock %}
+
+{
+  "msisdn": "84932466",
+  "username": "Mike Jackson",
+  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
+  "valid_for_authentication": false
+}
+
+{% endcodeblock %}
 
 ## Forget password
 
 {% img [class names] /images/Forgot_password.png 400x200 %}
 
-If the user forgets his password, he could recover by call **Forget password** API to recover.
+If the user forgets his password, he could recover by first call **Resend Verify** API to send a SMS to user.
 
+After the user receives the SMS, he should enter the SMS in a dialog, and the client calls `check_sms_token` API to check if the token is good or not
 
-`PUT /api/v1/users/forget_password`
+{% codeblock %}
 
-Expected parameters in the body
+POST /api/v1/users/check_sms_token
 
-- msisdn:  The phone number of the user
+{
+  "sms_confirmation_token": "abcd"
+}
 
-If successful, it returns a 200 response.
+{% endcodeblock %}
 
-After calling this API, the server will send a verification code to the user by SMS.
+if the token is correct, he calls the `Recover Password` to update his password
+
+if the token is correct, the response is as following,
+
+{% codeblock %}
+
+{
+  "msisdn": "84932466",
+  "username": "Mike Jackson",
+  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
+  "valid_for_authentication": true
+}
+
+{% endcodeblock %}
+
+If the SMS confirmation token is invalid
+
+{% codeblock %}
+
+{
+  "error": "Invalid resource. Please fix errors and try again.",
+  "errors": {
+    "sms_confirmation_token": [
+      "is invalid"
+    ]
+}
+}
+
+{% endcodeblock %}
+
+If the SMS confirmation token is expired
+
+{% codeblock %}
+
+{
+  "error": "Invalid resource. Please fix errors and try again.",
+  "errors": {
+    "sms_confirmation_token": [
+      "is expired"
+    ]
+}
+}
+
+{% endcodeblock %}
 
 ## Recover password
 
 After the user receives the SMS, he should enter the verification code and new password
+
+{% codeblock %}
+
+POST /api/v1/users/change_password_by_sms
+
+{
+  "sms_confirmation_token": "abcd",
+  "password": "12345678"
+}
+
+{% endcodeblock %}
+
+If the update is successful, it returns the user information same as above.
 
 ## Reset password
 
@@ -151,7 +256,7 @@ After the user receives the SMS, he should enter the verification code and new p
 
 The user can reset his password by this API.
 
-`PUT /api/v1/users/reset_password`
+`PUT /api/v1/users/change_password`
 
 **This API needs authentication**
 
@@ -161,7 +266,7 @@ Expected parameters in the body
 
 {% codeblock %}
 
-POST /api/v1/users/reset_password
+POST /api/v1/users/change_password
 
 {
   "current_password": "12345678"
