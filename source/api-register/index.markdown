@@ -298,10 +298,10 @@ to the server like following,
 
 {% codeblock %}
 
-POST /api/v1/facebook/signup
+POST /api/v1/fb_login
 
 {
-  "token": "12sdfs23423"
+  "access_token": "12sdfs23423suworjowjerowruouro3rwoefijwoefjwe"
 }
 
 {% endcodeblock %}
@@ -314,42 +314,16 @@ information as response
 
 {
   "username": "Mike Jackson",
-  "male": true,
+  "gender": 'male',
   "birthday": '1984-03-20',
   "msisdn": "84932466",
-  "email": "aaa@example.com",
-  "facebook_id": "2342lkjdfsf"
+  "email": "aaa@example.com"
 }
 {% endcodeblock %}
 
-The facebook_id is very important, and then the client let the user update information and posts to the server,
-
-{% codeblock %}
-
-POST /api/v1/users
-
-{
-  "msisdn": "84932466",
-  "username": "Mike Jackson"
-  "password": "12345678"
-  "facebook_id": "2342lkjdfsf"
-
-  "male": true,
-  "birthday": '1984-03-20',
-  "msisdn": "84932466",
-  "email": "aaa@example.com",
-  "billing_address": {
-    "address1": "12 Ayer Rajah Cresent",
-    "address2": "",
-    "zipcode": "139943"
-  }
-  "shipping_address_same_as_billing": true
-
-}
-
-{% endcodeblock %}
+The facebook doesn't need to signup, if after it logins, it will be created in Xhoppe database automatically.
 
 
-The **facebook_id** must be passed back to the server.
+
 
 
