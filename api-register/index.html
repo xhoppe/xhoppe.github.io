@@ -165,12 +165,9 @@
 
 <p><code>POST /api/v1/users/verify</code></p>
 
-<p>Expected parameters in the body</p>
-
-<ul>
-<li>sms_confirmation_token:  The verification code received by the user.</li>
-</ul>
-
+<p>Expected parameters in the body
+- msisdn: the phone number
+- sms_confirmation_token:  The verification code received by the user.</p>
 
 <h3>Sample Request</h3>
 
@@ -179,10 +176,12 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/verify
 </span><span class='line'>
 </span><span class='line'>{
-</span><span class='line'>  "sms_confirmation_token": "abcd"
+</span><span class='line'>  "msisdn": "1234234"
+</span><span class='line'>  "sms_confirmation_token": "2334"
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
