@@ -168,7 +168,7 @@
 <p>Expected parameters in the body</p>
 
 <ul>
-<li>code:  The verification code received by the user.</li>
+<li>sms_confirmation_token:  The verification code received by the user.</li>
 </ul>
 
 
@@ -182,7 +182,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/verify
 </span><span class='line'>
 </span><span class='line'>{
-</span><span class='line'>  "sms_token": "abcd"
+</span><span class='line'>  "sms_confirmation_token": "abcd"
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -204,7 +204,11 @@
 
 <p>If the verification is successful, it will return the authentication_token to the client.</p>
 
+<p>The SMS confirmation token is case insensitive.</p>
+
 <h3>Sample error response</h3>
+
+<p>If the SMS confirmation token is invalid</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -217,10 +221,64 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
 </span><span class='line'>  "error": "Invalid resource. Please fix errors and try again.",
 </span><span class='line'>  "errors": {
-</span><span class='line'>    "sms_token": [
-</span><span class='line'>      "not valid"
+</span><span class='line'>    "sms_confirmation_token": [
+</span><span class='line'>      "is invalid"
 </span><span class='line'>    ]
 </span><span class='line'>}
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If the SMS confirmation token is expired</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "error": "Invalid resource. Please fix errors and try again.",
+</span><span class='line'>  "errors": {
+</span><span class='line'>    "sms_confirmation_token": [
+</span><span class='line'>      "is expired"
+</span><span class='line'>    ]
+</span><span class='line'>}
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After the SMS is sent, the token is valid for 10 minutes.</p>
+
+<h2>Resend Verify</h2>
+
+<p>If the SMS is sent but the user didn&rsquo;t confirm. He could invoke &lsquo;Resend Verify&rsquo; to send another SMS.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/resend_verify
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>  "msisdn": "+6584932466"
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The response should be</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "username": "Mike Jackson",
+</span><span class='line'>  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
+</span><span class='line'>  "valid_for_authentication": false
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -228,24 +286,99 @@
 
 <p><img class="[class names]" src="/images/Forgot_password.png" width="400"></p>
 
-<p>If the user forgets his password, he could recover by call <strong>Forget password</strong> API to recover.</p>
+<p>If the user forgets his password, he could recover by first call <strong>Resend Verify</strong> API to send a SMS to user.</p>
 
-<p><code>PUT /api/v1/users/forget_password</code></p>
+<p>After the user receives the SMS, he should enter the SMS in a dialog, and the client calls <code>check_sms_token</code> API to check if the token is good or not</p>
 
-<p>Expected parameters in the body</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/check_sms_token
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>  "sms_confirmation_token": "abcd"
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
-<ul>
-<li>msisdn:  The phone number of the user</li>
-</ul>
+
+<p>if the token is correct, he calls the <code>Recover Password</code> to update his password</p>
+
+<p>if the token is correct, the response is as following,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "msisdn": "84932466",
+</span><span class='line'>  "username": "Mike Jackson",
+</span><span class='line'>  "authentication_token": "h-jkDAMwJzrsm-4bvgzw",
+</span><span class='line'>  "valid_for_authentication": true
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<p>If successful, it returns a 200 response.</p>
+<p>If the SMS confirmation token is invalid</p>
 
-<p>After calling this API, the server will send a verification code to the user by SMS.</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "error": "Invalid resource. Please fix errors and try again.",
+</span><span class='line'>  "errors": {
+</span><span class='line'>    "sms_confirmation_token": [
+</span><span class='line'>      "is invalid"
+</span><span class='line'>    ]
+</span><span class='line'>}
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If the SMS confirmation token is expired</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "error": "Invalid resource. Please fix errors and try again.",
+</span><span class='line'>  "errors": {
+</span><span class='line'>    "sms_confirmation_token": [
+</span><span class='line'>      "is expired"
+</span><span class='line'>    ]
+</span><span class='line'>}
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>Recover password</h2>
 
 <p>After the user receives the SMS, he should enter the verification code and new password</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/change_password_by_sms
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>  "sms_confirmation_token": "abcd",
+</span><span class='line'>  "password": "12345678"
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If the update is successful, it returns the user information same as above.</p>
 
 <h2>Reset password</h2>
 
@@ -253,7 +386,7 @@
 
 <p>The user can reset his password by this API.</p>
 
-<p><code>PUT /api/v1/users/reset_password</code></p>
+<p><code>PUT /api/v1/users/change_password</code></p>
 
 <p><strong>This API needs authentication</strong></p>
 
@@ -267,7 +400,7 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/reset_password
+</pre></td><td class='code'><pre><code class=''><span class='line'>POST /api/v1/users/change_password
 </span><span class='line'>
 </span><span class='line'>{
 </span><span class='line'>  "current_password": "12345678"
