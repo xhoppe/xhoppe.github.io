@@ -79,7 +79,7 @@ After the user is registered, a SMS will be send to the user, the user needs to 
 `POST /api/v1/users/verify`
 
 Expected parameters in the body
-
+- msisdn: the phone number
 - sms_confirmation_token:  The verification code received by the user.
 
 ### Sample Request
@@ -89,7 +89,8 @@ Expected parameters in the body
 POST /api/v1/users/verify
 
 {
-  "sms_confirmation_token": "abcd"
+  "msisdn": "1234234"
+  "sms_confirmation_token": "2334"
 }
 
 {% endcodeblock %}
