@@ -221,4 +221,25 @@ product增加了两个elements: available_options 和 filtered_variants.
 
 {% endcodeblock %}
 
-可以看到filtered_variants只含一个element，即为用户最后选择的variant
+可以看到filtered_variants只含一个element，即为用户最后选择的variant.
+
+
+由于product返回内容较多，可以用下面的api来过滤variant, 该api仅返回available_options和filtered_variants.
+
+
+
+`GET /api/v1/products/#{id}/filter`
+
+{% codeblock lang:json %}
+
+{"id"=>10,
+ "type"=>"Product",
+ 
+ "has_variants"=>true,
+ "available_options"=>
+  [{"id"=>19, "presentation"=>"Size", "available_values"=>[{"id"=>47, "presentation"=>"L"}]},
+   {"id"=>20, "presentation"=>"Color", "available_values"=>[{"id"=>49, "presentation"=>"Green"}]}],
+ 
+ "filtered_variants"=>[{"id"=>47, "options_text"=>"Size: L, Color: Green", "display_price"=>"$0", "price"=>0.0, "price_cents"=>0}]}
+
+{% endcodeblock %}
