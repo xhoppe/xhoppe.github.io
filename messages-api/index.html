@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Messages Api Nov 5th, 2014 11:06 pm Here we describe the messages API. My messages This API needs authentication &lsquo;GET /messages&rsquo; The Api &hellip;">
+  <meta name="description" content="Messages Api Nov 5th, 2014 11:06 pm Here we describe the messages API. My messages This API needs authentication &lsquo;GET /message_copies&rsquo; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,13 +84,15 @@
 
 <p><strong>This API needs authentication</strong></p>
 
-<p>&lsquo;GET /messages&rsquo;</p>
+<p>&lsquo;GET /message_copies&rsquo;</p>
 
 <p>The Api accepts a parameter <strong>since</strong>, for example</p>
 
-<p>&lsquo;GET /messages?since=2014-11-22T12:00:00Z&rsquo;</p>
+<p>&lsquo;GET /message_copies?since=2014-11-22T12:00:00Z&rsquo;</p>
 
 <p>And it will return only the new messages since that time.</p>
+
+<p>只所以叫message_copy而不是message主要是为了支持群发考虑，如果群发的时候消息只有一条，每个接受者有一个message_copy,这样可以节约资源</p>
 
 <p>The response will be like following</p>
 
@@ -115,45 +117,50 @@
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
+<span class='line-number'>22</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>[
 </span><span class='line'>  {
-</span><span class='line'>    id: 1,
-</span><span class='line'>    title: 'Free ice cream',
-</span><span class='line'>    body: 'ljsfjsfjslfjs ljdslj ljdsflsjdf ',
-</span><span class='line'>    created_at: '2014-11-22T12:00:00Z',
-</span><span class='line'>    image: 'http://test.xhop.pe/aaa/aaa.jpg',
-</span><span class='line'>    read: true
-</span><span class='line'>    ms_id: 3
+</span><span class='line'>    "id"=>8,
+</span><span class='line'>    "subject"=>"Eos deserunt hic repudiandae.",
+</span><span class='line'>    "body"=>
+</span><span class='line'>     "Velit ratione aut libero aut et eum. Dignissimos alias pariatur est. Deserunt perspiciatis corporis natus. Repellendus est fuga ab eaque consequuntur voluptates rerum. Et adipisci totam vitae vel.",
+</span><span class='line'>    "read"=>false,
+</span><span class='line'>    "resource_type"=>nil,
+</span><span class='line'>    "resource_id"=>nil,
+</span><span class='line'>    "updated_at"=>"2014-11-11T09:58:44Z"
 </span><span class='line'>  },
-</span><span class='line'>
 </span><span class='line'>  {
-</span><span class='line'>    id: 2,
-</span><span class='line'>    title: 'Free ice cream',
-</span><span class='line'>    body: 'ljsfjsfjslfjs ljdslj ljdsflsjdf ',
-</span><span class='line'>    created_at: '2014-11-22T12:00:00Z',
-</span><span class='line'>    image: 'http://test.xhop.pe/aaa/aaa.jpg',
-</span><span class='line'>    read: false
-</span><span class='line'>    ms_id:
+</span><span class='line'>    "id"=>7,
+</span><span class='line'>    "subject"=>"Delectus consequatur expedita eum aut.",
+</span><span class='line'>    "body"=>
+</span><span class='line'>     "Aut possimus rerum odit quis. Aliquid enim quis dignissimos aut vitae sint. Sed aut rem amet sequi. Rerum et modi est adipisci sint eos et. Fuga ullam occaecati sit ipsa ea.",
+</span><span class='line'>    "read"=>false,
+</span><span class='line'>    "resource_type"=>nil,
+</span><span class='line'>    "resource_id"=>nil,
+</span><span class='line'>    "updated_at"=>"2014-11-11T09:58:44Z"
 </span><span class='line'>  }
 </span><span class='line'>]</span></code></pre></td></tr></table></div></figure>
 
 
-<p>The ms_id is the moodstocks image id, it could be nil, if it&rsquo;s not nil, then when the user clicks the message,
-the client can invoke the scannable api to get the product or coupon.</p>
+<p>The resource_type and resource_id could be different kinds of objects. For example, resource_type can be <code>Coupon</code>, and resource_id can be the coupon id.</p>
+
+<p>这个api会返回一个Last-Modified http header，格式为iso8601格式。客户端可以缓存这个时间戳，以后的请求可以用这个作为since param</p>
 
 <h2>Delete message</h2>
 
 <p><strong>This API needs authentication</strong></p>
 
-<p>&lsquo;DELETE /messages/#{id}&rsquo;</p>
+<p>&lsquo;DELETE /message_copies/#{id}&rsquo;</p>
 
 <p>The id is message id.</p>
+
+<p>This API returns an empty body. If the HTTP status is 200, the message is deleted</p>
 
 <h2>New messages count</h2>
 
 <p><strong>This API needs authentication</strong></p>
 
-<p>&lsquo;GET /messages/new_messages_count&rsquo;</p>
+<p>&lsquo;GET /message_copies/unread_count&rsquo;</p>
 
 <p>It returns the count of new message.</p>
 
@@ -161,9 +168,43 @@ the client can invoke the scannable api to get the product or coupon.</p>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
-</span><span class='line'>  new_messages_count: 7
+</span><span class='line'>  unread_count: 7
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
+
+<h2>Read message</h2>
+
+<p><strong>This API needs authentication</strong></p>
+
+<p>&lsquo;GET /message_copies/#{id}&rsquo;</p>
+
+<p>id is the message_copy id.</p>
+
+<p>Sample response is</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  "id"=>8,
+</span><span class='line'>  "subject"=>"Eos deserunt hic repudiandae.",
+</span><span class='line'>  "body"=>
+</span><span class='line'>   "Velit ratione aut libero aut et eum. Dignissimos alias pariatur est. Deserunt perspiciatis corporis natus. Repellendus est fuga ab eaque consequuntur voluptates rerum. Et adipisci totam vitae vel.",
+</span><span class='line'>  "read"=>true,
+</span><span class='line'>  "resource_type"=>nil,
+</span><span class='line'>  "resource_id"=>nil,
+</span><span class='line'>  "updated_at"=>"2014-11-11T09:58:44Z"
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>调用这个api后read属性会变为true</p>
 
   
     <footer>

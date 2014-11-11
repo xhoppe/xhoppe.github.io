@@ -86,7 +86,7 @@
 
 <p>To get the user info the client should use following API</p>
 
-<p><code>GET /user_info</code></p>
+<p><code>GET /api/v1/user_info</code></p>
 
 <p>The server will return information like following,</p>
 
@@ -103,18 +103,44 @@
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
-</span><span class='line'>  "username": "Mike Jackson",
-</span><span class='line'>  "male": true,
-</span><span class='line'>  "birthday": '1984-03-20',
-</span><span class='line'>  "msisdn": "84932466",
-</span><span class='line'>  "email": "aaa@example.com",
-</span><span class='line'>  "billing_address": {
-</span><span class='line'>    "address1": "12 Ayer Rajah Cresent",
-</span><span class='line'>    "address2": "",
-</span><span class='line'>    "zipcode": "139943"
-</span><span class='line'>  }
-</span><span class='line'>  "shipping_address_same_as_billing": true
+</span><span class='line'>  "msisdn"=>"100001",
+</span><span class='line'>   "username"=>"Mary Jason",
+</span><span class='line'>   "authentication_token"=>"fciVr7iis9ZvJvSoCKxP",
+</span><span class='line'>   "gender"=>"female",
+</span><span class='line'>   "email"=>"aaa@example.com",
+</span><span class='line'>   "ship_address_same_as_billing_address"=>true,
+</span><span class='line'>   "valid_for_authentication"=>true,
+</span><span class='line'>   "ship_address"=>
+</span><span class='line'>    {
+</span><span class='line'>      "firstname"=>"Mary",
+</span><span class='line'>     "lastname"=>"Ann",
+</span><span class='line'>     "full_name"=>"Mary Ann",
+</span><span class='line'>     "address1"=>"12 Ayer rajah cresent",
+</span><span class='line'>     "address2"=>nil,
+</span><span class='line'>     "zipcode"=>"139941",
+</span><span class='line'>     "phone"=>"98723734"
+</span><span class='line'>    },
+</span><span class='line'>   "billing_address"=>nil,
+</span><span class='line'>   "avatar"=>
+</span><span class='line'>    {
+</span><span class='line'>      "url"=>nil, 
+</span><span class='line'>      "medium_url"=>nil, 
+</span><span class='line'>      "thumb_url"=>nil
+</span><span class='line'>   }
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -138,24 +164,46 @@
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>{
-</span><span class='line'>  "username": "Mike Jackson",
-</span><span class='line'>  "male": true,
-</span><span class='line'>  "birthday": '1984-03-20',
-</span><span class='line'>  "msisdn": "84932466",
-</span><span class='line'>  "email": "aaa@example.com",
-</span><span class='line'>  "billing_address": {
-</span><span class='line'>    "address1": "12 Ayer Rajah Cresent",
-</span><span class='line'>    "address2": "",
-</span><span class='line'>    "zipcode": "139943"
-</span><span class='line'>  }
-</span><span class='line'>  "shipping_address_same_as_billing": false,
-</span><span class='line'>  "shipping_address": {
-</span><span class='line'>    "address1": "12 Orchard Road",
-</span><span class='line'>    "address2": "",
-</span><span class='line'>    "zipcode": "130000"
-</span><span class='line'>  }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>  "msisdn"=>"100005",
+</span><span class='line'> "username"=>"Mary Ann",
+</span><span class='line'> "authentication_token"=>"ynzWsj3dRaw31q34NBG8",
+</span><span class='line'> "gender"=>"female",
+</span><span class='line'> "email"=>"aaa@example.com",
+</span><span class='line'> "ship_address_same_as_billing_address"=>false,
+</span><span class='line'> "valid_for_authentication"=>true,
+</span><span class='line'>
+</span><span class='line'> "ship_address"=>
+</span><span class='line'>  {"firstname"=>"Mary",
+</span><span class='line'>   "lastname"=>"Ann",
+</span><span class='line'>   "full_name"=>"Mary Ann",
+</span><span class='line'>   "address1"=>"12 Ayer rajah cresent",
+</span><span class='line'>   "address2"=>nil,
+</span><span class='line'>   "zipcode"=>"139941",
+</span><span class='line'>   "phone"=>"98723734"},
+</span><span class='line'>
+</span><span class='line'> "billing_address"=>
+</span><span class='line'>  {
+</span><span class='line'>    "firstname"=>"AAA",
+</span><span class='line'>   "lastname"=>"BBB",
+</span><span class='line'>   "full_name"=>"AAA BBB",
+</span><span class='line'>   "address1"=>"12 Ayer rajah cresent",
+</span><span class='line'>   "address2"=>nil,
+</span><span class='line'>   "zipcode"=>"139941",
+</span><span class='line'>   "phone"=>"98723734"},
+</span><span class='line'>
+</span><span class='line'>  "avatar"=>{"url"=>nil, "medium_url"=>nil, "thumb_url"=>nil}}</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>Update User info</h2>
@@ -186,24 +234,34 @@
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>PUT /user_info
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PUT /api/v1/user_info
 </span><span class='line'>
 </span><span class='line'>{
-</span><span class='line'>  "username": "Mike Jackson",
-</span><span class='line'>  "male": true,
-</span><span class='line'>  "birthday": '1984-03-20',
-</span><span class='line'>  "msisdn": "84932466",
-</span><span class='line'>  "email": "aaa@example.com",
-</span><span class='line'>  "billing_address": {
-</span><span class='line'>    "address1": "12 Ayer Rajah Cresent",
-</span><span class='line'>    "address2": "",
-</span><span class='line'>    "zipcode": "139943"
-</span><span class='line'>  }
-</span><span class='line'>  "shipping_address_same_as_billing": false,
-</span><span class='line'>  "shipping_address": {
-</span><span class='line'>    "address1": "12 Orchard Road",
-</span><span class='line'>    "address2": "",
-</span><span class='line'>    "zipcode": "130000"
+</span><span class='line'>   :email=>"aaa@example.com",
+</span><span class='line'>   :gender=>"female",
+</span><span class='line'>   :username=>"Mary Jason",
+</span><span class='line'>   :ship_address_same_as_billing_address=>false,
+</span><span class='line'>
+</span><span class='line'>   :ship_address=> {
+</span><span class='line'>    :firstname=>"Mary", 
+</span><span class='line'>    :lastname=>"Jason", 
+</span><span class='line'>    :address1=>"12 Ayer rajah cresent",
+</span><span class='line'>    :address2=>"Level 5",  
+</span><span class='line'>    :zipcode=>"139941",
+</span><span class='line'>    :phone=>"98723734"
+</span><span class='line'>   },
+</span><span class='line'>
+</span><span class='line'>   :billing_address=>{
+</span><span class='line'>    :firstname=>"AAA", 
+</span><span class='line'>    :lastname=>"BBB", 
+</span><span class='line'>    :address1=>"12 Ayer rajah cresent", 
+</span><span class='line'>    :zipcode=>"139941", 
+</span><span class='line'>    :phone=>"98723734"
 </span><span class='line'>  }
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
@@ -212,9 +270,27 @@
 
 <p><strong> The server should not store user&rsquo;s credit card number</strong></p>
 
+<p>当输入地址的时候 firstname, lastname, address1, zipcode, phone是必填项</p>
+
 <p><img class="[class names]" src="/images/My_Profile.png" width="400"></p>
 
-<p>My profile seems could be unified with user info? (discuss)</p>
+<h2>Avatar</h2>
+
+<p>update avatar 下面的api</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PUT /api/v1/avatar
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>   :avatar => 'lsjfsljfsldfj02348029384234......'
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>客户端的请求应该设为multipart，avatar参数为上传的图片文件</p>
 
   
     <footer>
