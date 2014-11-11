@@ -425,7 +425,32 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>可以看到filtered_variants只含一个element，即为用户最后选择的variant</p>
+<p>可以看到filtered_variants只含一个element，即为用户最后选择的variant.</p>
+
+<p>由于product返回内容较多，可以用下面的api来过滤variant, 该api仅返回available_options和filtered_variants.</p>
+
+<p><code>GET /api/v1/products/#{id}/filter</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">10</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Product&quot;</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'> <span class="nt">&quot;has_variants&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;available_options&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">19</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size&quot;</span><span class="p">,</span> <span class="nt">&quot;available_values&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">47</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;L&quot;</span><span class="p">}]},</span>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">20</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Color&quot;</span><span class="p">,</span> <span class="nt">&quot;available_values&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">49</span><span class="p">,</span> <span class="nt">&quot;presentation&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Green&quot;</span><span class="p">}]}],</span>
+</span><span class='line'>
+</span><span class='line'> <span class="nt">&quot;filtered_variants&quot;</span><span class="err">=&gt;</span><span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">47</span><span class="p">,</span> <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Size: L, Color: Green&quot;</span><span class="p">,</span> <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span> <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span> <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">}]}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
   
     <footer>
