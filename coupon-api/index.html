@@ -99,20 +99,138 @@
 
 <p><strong>This API needs authentication</strong></p>
 
-<p><code>GET /api/v1/coupons</code></p>
+<h3>Get my Coupons</h3>
+
+<p><code>GET /api/v1/user_coupons</code></p>
+
+<p>without parameters, it get all coupons user added</p>
 
 <p>This API can accepts parameters,</p>
 
 <ul>
-<li>type: accepts 1 values: redeemed</li>
+<li>type: accepts 1 values: expiring, redeemed</li>
 </ul>
 
 
 <p>for example,</p>
 
-<p><code>GET /api/v1/coupons?type=redeemed</code></p>
+<p><code>GET /api/v1/coupons?type=redeemed</code>
+<code>GET /api/v1/coupons?type=expiring</code></p>
 
-<p>The type recent and expiring just stores at client side when the user scans moodstocks image and don&rsquo;t need to access server?</p>
+<p>返回的结果是分页的，每页最多25条记录, 默认是返回第一页（page=0 是第一页），用户可以用page参数来返回别的页，比如返回第二页，</p>
+
+<p><code>GET /api/v1/coupons?type=redeemed&amp;page=1</code></p>
+
+<p>返回结果如下, 下面结果中total_pages为1，说明只有一页， coupons返回结果，在每个coupon里面如果用户已经加了这个coupon，added_by_user为true，如果用户已经redeem了这个coupon，redeemed_by_user返回true</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'> <span class="nt">&quot;total_pages&quot;</span><span class="err">=&gt;</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;coupons&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[</span>
+</span><span class='line'>    <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">23</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;sku&quot;</span><span class="err">=&gt;nil</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Coupon&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;start_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-12&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;end_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-16&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;description&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt for storewide&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;date_valid&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;added_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;redeemed_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span><span class="p">[]},</span>
+</span><span class='line'>     <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">22</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;sku&quot;</span><span class="err">=&gt;nil</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Coupon&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;start_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-13&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;end_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-21&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;description&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt for storewide&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;date_valid&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;added_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;redeemed_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span><span class="p">[]},</span>
+</span><span class='line'>     <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">21</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;sku&quot;</span><span class="err">=&gt;nil</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Coupon&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;start_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-13&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;end_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-19&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;description&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt for storewide&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;date_valid&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;added_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;redeemed_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span><span class="p">[]}</span>
+</span><span class='line'>    <span class="p">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Add coupon</h3>
+
+<p>用户用下面api添加coupon</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">`POST</span> <span class="err">/api/v</span><span class="mi">1</span><span class="err">/user_coupons`</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">{</span> <span class="err">coupon_id:</span> <span class="err">1234</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>coupon_id 为coupon id，如果添加成功，response的status为201（created），body为空</p>
+
+<h3>Delete Coupon</h3>
+
+<p>用户用下面api添加coupon</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="err">`DELETE</span> <span class="err">/api/v</span><span class="mi">1</span><span class="err">/user_coupons/</span><span class="mi">1</span><span class="err">,</span><span class="mi">2</span><span class="err">,</span><span class="mi">3</span><span class="err">`</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>1,2,3为coupon id用<code>,</code>隔开</p>
+
+<p>如果删除成功，response的status为200（created），body为空</p>
 
   
     <footer>

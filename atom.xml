@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://xhoppe.github.io/atom.xml" rel="self"/>
   <link href="http://xhoppe.github.io/"/>
-  <updated>2014-11-11T21:41:34+10:30</updated>
+  <updated>2014-11-13T23:04:41+10:30</updated>
   <id>http://xhoppe.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -28,9 +28,9 @@
 
 <p><a href="http://xhoppe.github.io/api-authentication">Authentication API</a> (finished)</p>
 
-<p><a href="http://xhoppe.github.io/user-info-api">User Info API</a></p>
+<p><a href="http://xhoppe.github.io/user-info-api">User Info API</a> (finished)</p>
 
-<p><a href="http://xhoppe.github.io/messages-api">Messages API</a></p>
+<p><a href="http://xhoppe.github.io/messages-api">Messages API</a> (finished)</p>
 
 <p><a href="http://xhoppe.github.io/product-api">Products API</a> (finished)</p>
 
@@ -38,7 +38,7 @@
 
 <p><a href="http://xhoppe.github.io/scanable-api">Scannable API</a> (finished)</p>
 
-<p><a href="http://xhoppe.github.io/coupon-api">Coupon API</a></p>
+<p><a href="http://xhoppe.github.io/coupon-api">Coupon API</a> (finished)</p>
 
 <p><a href="http://xhoppe.github.io/redeem-api">Redeem API</a> (finished)</p>
 ]]></content>

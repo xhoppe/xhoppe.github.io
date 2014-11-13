@@ -92,6 +92,12 @@
 
 <p>And it will return only the new messages since that time.</p>
 
+<p>返回结果分页，每页显示25条记录，用户可以用page参数指示第几页，page=0为第一页</p>
+
+<p>&lsquo;GET /message_copies?since=2014-11-22T12:00:00Z&amp;page=2&rsquo;</p>
+
+<p>上面返回第三页</p>
+
 <p>只所以叫message_copy而不是message主要是为了支持群发考虑，如果群发的时候消息只有一条，每个接受者有一个message_copy,这样可以节约资源</p>
 
 <p>The response will be like following</p>
@@ -118,28 +124,36 @@
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[
-</span><span class='line'>  {
-</span><span class='line'>    "id"=>8,
-</span><span class='line'>    "subject"=>"Eos deserunt hic repudiandae.",
-</span><span class='line'>    "body"=>
-</span><span class='line'>     "Velit ratione aut libero aut et eum. Dignissimos alias pariatur est. Deserunt perspiciatis corporis natus. Repellendus est fuga ab eaque consequuntur voluptates rerum. Et adipisci totam vitae vel.",
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{"total_pages"=>1,
+</span><span class='line'>
+</span><span class='line'> "message_copies"=>
+</span><span class='line'>  [
+</span><span class='line'>   {
+</span><span class='line'>    "id"=>5,
+</span><span class='line'>    "subject"=>"Quidem laborum est minus ducimus.",
+</span><span class='line'>    "body"=>"Et modi ea repudiandae quis nulla exercitationem. Laboriosam ut perferendis dolorem facere. Fugit quis atque fuga.",
 </span><span class='line'>    "read"=>false,
 </span><span class='line'>    "resource_type"=>nil,
 </span><span class='line'>    "resource_id"=>nil,
-</span><span class='line'>    "updated_at"=>"2014-11-11T09:58:44Z"
+</span><span class='line'>    "updated_at"=>"2014-11-13T12:35:57Z"
 </span><span class='line'>  },
-</span><span class='line'>  {
-</span><span class='line'>    "id"=>7,
-</span><span class='line'>    "subject"=>"Delectus consequatur expedita eum aut.",
+</span><span class='line'>
+</span><span class='line'>   {
+</span><span class='line'>    "id"=>4,
+</span><span class='line'>    "subject"=>"Corrupti sit repellendus totam quos tenetur velit.",
 </span><span class='line'>    "body"=>
-</span><span class='line'>     "Aut possimus rerum odit quis. Aliquid enim quis dignissimos aut vitae sint. Sed aut rem amet sequi. Rerum et modi est adipisci sint eos et. Fuga ullam occaecati sit ipsa ea.",
+</span><span class='line'>     "Eos commodi magnam inventore quia esse unde quos. Quia hic ea in. Voluptatibus neque dolorum consectetur fugiat explicabo provident non.",
 </span><span class='line'>    "read"=>false,
 </span><span class='line'>    "resource_type"=>nil,
 </span><span class='line'>    "resource_id"=>nil,
-</span><span class='line'>    "updated_at"=>"2014-11-11T09:58:44Z"
-</span><span class='line'>  }
-</span><span class='line'>]</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>    "updated_at"=>"2014-11-13T12:34:57Z"
+</span><span class='line'>    }
+</span><span class='line'>  ]
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
 <p>The resource_type and resource_id could be different kinds of objects. For example, resource_type can be <code>Coupon</code>, and resource_id can be the coupon id.</p>

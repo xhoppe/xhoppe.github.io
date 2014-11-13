@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Scan_history_api - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Scan_history_api Nov 13th, 2014 10:54 pm The user uses following API to get scan histories GET api/v1/scan_histories scan history也分页，默认为第一页， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://xhoppe.github.io/scan-history-api">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:xhoppe.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Scan_history_api</h1>
+    <p class="meta">
+
+
+
+
+<time class='entry-date' datetime='2014-11-13T22:54:00+10:30'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:54 pm</span></time></p>
+  </header>
+  
+  <p>The user uses following API to get scan histories</p>
+
+<p><code>GET api/v1/scan_histories</code></p>
+
+<p>scan history也分页，默认为第一页，用户可以带page参数来制定返回第几页。（page=0 为第一页）</p>
+
+<p>返回结果如下，</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span><span class="nt">&quot;total_pages&quot;</span><span class="err">=&gt;</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;scan_histories&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>    <span class="nt">&quot;moodstocks_id&quot;</span><span class="err">=&gt;</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;resouce_type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Product&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;created_at&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-13T12:13:01Z&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;scannable&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>     <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;sku&quot;</span><span class="err">=&gt;nil</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Rustic Concrete Shirt&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Product&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;description&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>       <span class="s2">&quot;Et rem magnam odio. Ut voluptatem corporis delectus doloribus. Quo id sit laboriosam dolorem suscipit. Vitae porro ut aut quasi ducimus.&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;sold_by&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Pacocha-Konopelski&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$0&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">0.0</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;has_variants&quot;</span><span class="err">=&gt;</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;available_options&quot;</span><span class="err">=&gt;</span><span class="p">[],</span>
+</span><span class='line'>      <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span><span class="p">[],</span>
+</span><span class='line'>      <span class="nt">&quot;product_properties&quot;</span><span class="err">=&gt;</span><span class="p">[],</span>
+</span><span class='line'>      <span class="nt">&quot;master&quot;</span><span class="err">=&gt;</span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="nt">&quot;stocks_count&quot;</span><span class="err">=&gt;</span><span class="mi">0</span><span class="p">}}},</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;moodstocks_id&quot;</span><span class="err">=&gt;</span><span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;resouce_type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Coupon&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;created_at&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-13T12:13:01Z&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;scannable&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>     <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;sku&quot;</span><span class="err">=&gt;nil</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Coupon&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;start_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-13&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;end_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-21&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;description&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt for storewide&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;date_valid&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;added_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;redeemed_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span><span class="p">[]}},</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="p">{</span><span class="nt">&quot;moodstocks_id&quot;</span><span class="err">=&gt;</span><span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;resouce_type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Coupon&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;created_at&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-13T12:13:01Z&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;scannable&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>     <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;sku&quot;</span><span class="err">=&gt;nil</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;type&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Coupon&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;start_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-13&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;end_date&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;2014-11-19&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;description&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Discount 10% for TShirt for storewide&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;date_valid&quot;</span><span class="err">=&gt;</span><span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;added_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;redeemed_by_user&quot;</span><span class="err">=&gt;</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span><span class="p">[]</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在scan_histories中，moodstocks_id为用户扫描时的id，scannable要么是product，要么是coupon</p>
+
+  
+    <footer>
+      <p class="meta">
+        
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-13T22:54:00+10:30'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:54 pm</span></time>
+        
+      </p>
+      
+        <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://xhoppe.github.io/scan-history-api/index.html" data-via="" data-counturl="http://xhoppe.github.io/scan-history-api/index.html" >Tweet</a>
+  
+  
+  
+</div>
+
+      
+    </footer>
+  
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/21/xhoppe-doc/">Xhoppe-doc</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
