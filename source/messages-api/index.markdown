@@ -23,34 +23,44 @@ The Api accepts a parameter **since**, for example
 
 And it will return only the new messages since that time.
 
+返回结果分页，每页显示25条记录，用户可以用page参数指示第几页，page=0为第一页
+
+'GET /message_copies?since=2014-11-22T12:00:00Z&page=2'
+
+上面返回第三页
+
 只所以叫message_copy而不是message主要是为了支持群发考虑，如果群发的时候消息只有一条，每个接受者有一个message_copy,这样可以节约资源
 
 The response will be like following
 
 {% codeblock %}
 
-[
-  {
-    "id"=>8,
-    "subject"=>"Eos deserunt hic repudiandae.",
-    "body"=>
-     "Velit ratione aut libero aut et eum. Dignissimos alias pariatur est. Deserunt perspiciatis corporis natus. Repellendus est fuga ab eaque consequuntur voluptates rerum. Et adipisci totam vitae vel.",
+{"total_pages"=>1,
+
+ "message_copies"=>
+  [
+   {
+    "id"=>5,
+    "subject"=>"Quidem laborum est minus ducimus.",
+    "body"=>"Et modi ea repudiandae quis nulla exercitationem. Laboriosam ut perferendis dolorem facere. Fugit quis atque fuga.",
     "read"=>false,
     "resource_type"=>nil,
     "resource_id"=>nil,
-    "updated_at"=>"2014-11-11T09:58:44Z"
+    "updated_at"=>"2014-11-13T12:35:57Z"
   },
-  {
-    "id"=>7,
-    "subject"=>"Delectus consequatur expedita eum aut.",
+
+   {
+    "id"=>4,
+    "subject"=>"Corrupti sit repellendus totam quos tenetur velit.",
     "body"=>
-     "Aut possimus rerum odit quis. Aliquid enim quis dignissimos aut vitae sint. Sed aut rem amet sequi. Rerum et modi est adipisci sint eos et. Fuga ullam occaecati sit ipsa ea.",
+     "Eos commodi magnam inventore quia esse unde quos. Quia hic ea in. Voluptatibus neque dolorum consectetur fugiat explicabo provident non.",
     "read"=>false,
     "resource_type"=>nil,
     "resource_id"=>nil,
-    "updated_at"=>"2014-11-11T09:58:44Z"
-  }
-]
+    "updated_at"=>"2014-11-13T12:34:57Z"
+    }
+  ]
+}
 
 {% endcodeblock %}
 

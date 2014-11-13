@@ -18,9 +18,9 @@ Here is the Xhoppe doc,
 
 [Authentication API](/api-authentication) (finished)
 
-[User Info API](/user-info-api)
+[User Info API](/user-info-api) (finished)
 
-[Messages API](/messages-api)
+[Messages API](/messages-api) (finished)
 
 [Products API](/product-api) (finished)
 
@@ -28,6 +28,6 @@ Here is the Xhoppe doc,
 
 [Scannable API](/scanable-api) (finished)
 
-[Coupon API](/coupon-api)
+[Coupon API](/coupon-api) (finished)
 
 [Redeem API](/redeem-api) (finished)
