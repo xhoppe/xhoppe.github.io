@@ -196,8 +196,72 @@ To get the orders of a user,
 
 `GET /api/orders.json`
 
-This method will return all orders of a user.
+This method will return all orders of a user. The result is ordered by update date
 
+The result is paginated. The user can supply a parameter `state` to filter orders by state,
+
+- state: can be `created`, `payment`, `completed`
+
+For example, get orders that need payment,
+
+`GET /api/orders?state=payment`
+
+It will return following contents,
+
+{% codeblock lang:json %}
+
+{"total_pages"=>1,
+ "orders"=>
+  [{"id"=>40,
+    "state"=>"payment",
+    "all_paid"=>false,
+    "display_item_total"=>"$36",
+    "item_total"=>36.0,
+    "item_total_cents"=>3600,
+    "display_ship_total"=>"$10",
+    "ship_total"=>10.0,
+    "ship_total_cents"=>1000,
+    "display_total"=>"$46",
+    "total"=>46.0,
+    "total_cents"=>4600,
+    "ship_address"=>
+     {"firstname"=>"Urban",
+      "lastname"=>"VonRueden",
+      "full_name"=>"Urban VonRueden",
+      "address1"=>"939 Koelpin Curve",
+      "address2"=>"Apt. 437",
+      "zipcode"=>"19661",
+      "phone"=>"603.676.5452 x17586"},
+    "line_items"=>
+     [{"quantity"=>2,
+       "variant"=>
+        {"id"=>251,
+         "options_text"=>"",
+         "stocks_count"=>8,
+         "display_price"=>"$10",
+         "price"=>10.0,
+         "price_cents"=>1000,
+         "images"=>
+          [{"url"=>"/uploads/image/image/5/gshock.jpg",
+            "medium_url"=>"/uploads/image/image/5/medium_gshock.jpg",
+            "thumb_url"=>"/uploads/image/image/5/thumb_gshock.jpg"}]}},
+      {"quantity"=>2,
+       "variant"=>
+        {"id"=>252,
+         "options_text"=>"",
+         "stocks_count"=>8,
+         "display_price"=>"$8",
+         "price"=>8.0,
+         "price_cents"=>800,
+         "images"=>
+          [{"url"=>"/uploads/image/image/6/gshock.jpg",
+            "medium_url"=>"/uploads/image/image/6/medium_gshock.jpg",
+            "thumb_url"=>"/uploads/image/image/6/thumb_gshock.jpg"}]}}],
+    "shipping_fee_items"=>
+     [{"merchant"=>"Fadel and Sons", "display_shipping_fee"=>"$5", "shipping_fee"=>5.0, "shipping_fee_cents"=>500},
+      {"merchant"=>"Marquardt-Murray", "display_shipping_fee"=>"$5", "shipping_fee"=>5.0, "shipping_fee_cents"=>500}]}]}
+
+{% endcodeblock %}
 
 ## 库存的处理
 目前的库存将采用下面的方式，当用户创建一个order时，如果库存不足，服务端会返回下面的错误,
