@@ -378,7 +378,123 @@
 
 <p><code>GET /api/orders.json</code></p>
 
-<p>This method will return all orders of a user.</p>
+<p>This method will return all orders of a user. The result is ordered by update date</p>
+
+<p>The result is paginated. The user can supply a parameter <code>state</code> to filter orders by state,</p>
+
+<ul>
+<li>state: can be <code>created</code>, <code>payment</code>, <code>completed</code></li>
+</ul>
+
+
+<p>For example, get orders that need payment,</p>
+
+<p><code>GET /api/orders?state=payment</code></p>
+
+<p>It will return following contents,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span><span class="nt">&quot;total_pages&quot;</span><span class="err">=&gt;</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'> <span class="nt">&quot;orders&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>  <span class="p">[{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">40</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;state&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;payment&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;all_paid&quot;</span><span class="err">=&gt;</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;display_item_total&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$36&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;item_total&quot;</span><span class="err">=&gt;</span><span class="mf">36.0</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;item_total_cents&quot;</span><span class="err">=&gt;</span><span class="mi">3600</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;display_ship_total&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$10&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;ship_total&quot;</span><span class="err">=&gt;</span><span class="mf">10.0</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;ship_total_cents&quot;</span><span class="err">=&gt;</span><span class="mi">1000</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;display_total&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$46&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;total&quot;</span><span class="err">=&gt;</span><span class="mf">46.0</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;total_cents&quot;</span><span class="err">=&gt;</span><span class="mi">4600</span><span class="p">,</span>
+</span><span class='line'>    <span class="nt">&quot;ship_address&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>     <span class="p">{</span><span class="nt">&quot;firstname&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Urban&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;lastname&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;VonRueden&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;full_name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Urban VonRueden&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;address1&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;939 Koelpin Curve&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;address2&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Apt. 437&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;zipcode&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;19661&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;phone&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;603.676.5452 x17586&quot;</span><span class="p">},</span>
+</span><span class='line'>    <span class="nt">&quot;line_items&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>     <span class="p">[{</span><span class="nt">&quot;quantity&quot;</span><span class="err">=&gt;</span><span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>       <span class="nt">&quot;variant&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>        <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">251</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;stocks_count&quot;</span><span class="err">=&gt;</span><span class="mi">8</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$10&quot;</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">10.0</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">1000</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>          <span class="p">[{</span><span class="nt">&quot;url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/5/gshock.jpg&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;medium_url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/5/medium_gshock.jpg&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;thumb_url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/5/thumb_gshock.jpg&quot;</span><span class="p">}]}},</span>
+</span><span class='line'>      <span class="p">{</span><span class="nt">&quot;quantity&quot;</span><span class="err">=&gt;</span><span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>       <span class="nt">&quot;variant&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>        <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">252</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;options_text&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;stocks_count&quot;</span><span class="err">=&gt;</span><span class="mi">8</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$8&quot;</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">8.0</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">800</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>          <span class="p">[{</span><span class="nt">&quot;url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/6/gshock.jpg&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;medium_url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/6/medium_gshock.jpg&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="nt">&quot;thumb_url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/6/thumb_gshock.jpg&quot;</span><span class="p">}]}}],</span>
+</span><span class='line'>    <span class="nt">&quot;shipping_fee_items&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>     <span class="p">[{</span><span class="nt">&quot;merchant&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Fadel and Sons&quot;</span><span class="p">,</span> <span class="nt">&quot;display_shipping_fee&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$5&quot;</span><span class="p">,</span> <span class="nt">&quot;shipping_fee&quot;</span><span class="err">=&gt;</span><span class="mf">5.0</span><span class="p">,</span> <span class="nt">&quot;shipping_fee_cents&quot;</span><span class="err">=&gt;</span><span class="mi">500</span><span class="p">},</span>
+</span><span class='line'>      <span class="p">{</span><span class="nt">&quot;merchant&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Marquardt-Murray&quot;</span><span class="p">,</span> <span class="nt">&quot;display_shipping_fee&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$5&quot;</span><span class="p">,</span> <span class="nt">&quot;shipping_fee&quot;</span><span class="err">=&gt;</span><span class="mf">5.0</span><span class="p">,</span> <span class="nt">&quot;shipping_fee_cents&quot;</span><span class="err">=&gt;</span><span class="mi">500</span><span class="p">}]}]}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>库存的处理</h2>
 
