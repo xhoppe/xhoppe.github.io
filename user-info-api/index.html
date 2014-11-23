@@ -276,21 +276,19 @@
 
 <h2>Avatar</h2>
 
-<p>update avatar 下面的api</p>
+<p>update avatar 下面的api, PUT或者POST都支持</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>PUT /api/v1/avatar
 </span><span class='line'>
-</span><span class='line'>{
-</span><span class='line'>   :avatar => 'lsjfsljfsldfj02348029384234......'
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>user[avatar]='lsjfsljfsldfj02348029384234......'</span></code></pre></td></tr></table></div></figure>
 
 
 <p>客户端的请求应该设为multipart，avatar参数为上传的图片文件</p>
+
+<p>注意这个api不是json而是一般的html request，参数名为user[avatar]</p>
 
   
     <footer>
