@@ -132,15 +132,16 @@ If successful, the server will return updated infomation same as Get user info.
 
 ## Avatar
 
-update avatar 下面的api
+update avatar 下面的api, PUT或者POST都支持
 
 {% codeblock %}
 
 PUT /api/v1/avatar
 
-{
-   :avatar => 'lsjfsljfsldfj02348029384234......'
-}
+user[avatar]='lsjfsljfsldfj02348029384234......'
+
 {% endcodeblock %}
 
 客户端的请求应该设为multipart，avatar参数为上传的图片文件
+
+注意这个api不是json而是一般的html request，参数名为user[avatar]
