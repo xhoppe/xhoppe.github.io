@@ -102,6 +102,10 @@
 
 <p>The response will be like following</p>
 
+<p><strong>Updated on Nov 25</strong></p>
+
+<p>注意下面id=17的例子，sender_avatar可能为空，image中的url, medium_url, thumb_url也可能为空</p>
+
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -128,30 +132,48 @@
 <span class='line-number'>24</span>
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>{"total_pages"=>1,
 </span><span class='line'>
 </span><span class='line'> "message_copies"=>
 </span><span class='line'>  [
-</span><span class='line'>   {
-</span><span class='line'>    "id"=>5,
-</span><span class='line'>    "subject"=>"Quidem laborum est minus ducimus.",
-</span><span class='line'>    "body"=>"Et modi ea repudiandae quis nulla exercitationem. Laboriosam ut perferendis dolorem facere. Fugit quis atque fuga.",
-</span><span class='line'>    "read"=>false,
-</span><span class='line'>    "resource_type"=>nil,
-</span><span class='line'>    "resource_id"=>nil,
-</span><span class='line'>    "updated_at"=>"2014-11-13T12:35:57Z"
-</span><span class='line'>  },
+</span><span class='line'>   {"id"=>17,
+</span><span class='line'> "subject"=>"Aperiam autem modi ut.",
+</span><span class='line'> "body"=>
+</span><span class='line'>  "Vitae quo eum nostrum rerum nihil. Repellendus beatae omnis tempora vero ipsam. Recusandae blanditiis debitis consequatur qui dolore. Nihil ipsam vel dolorem ratione.",
+</span><span class='line'> "read"=>true,
+</span><span class='line'> "resource_type"=>nil,
+</span><span class='line'> "resource_id"=>nil,
+</span><span class='line'> "sender_name"=>"Xhopper",
+</span><span class='line'> "updated_at"=>"2014-11-25T10:23:27Z",
+</span><span class='line'> "sender_avatar"=>nil,
+</span><span class='line'> "image"=>{"url"=>nil, "medium_url"=>nil, "thumb_url"=>nil}},
 </span><span class='line'>
-</span><span class='line'>   {
-</span><span class='line'>    "id"=>4,
-</span><span class='line'>    "subject"=>"Corrupti sit repellendus totam quos tenetur velit.",
-</span><span class='line'>    "body"=>
-</span><span class='line'>     "Eos commodi magnam inventore quia esse unde quos. Quia hic ea in. Voluptatibus neque dolorum consectetur fugiat explicabo provident non.",
-</span><span class='line'>    "read"=>false,
-</span><span class='line'>    "resource_type"=>nil,
-</span><span class='line'>    "resource_id"=>nil,
-</span><span class='line'>    "updated_at"=>"2014-11-13T12:34:57Z"
-</span><span class='line'>    }
+</span><span class='line'>   {"id"=>31,
+</span><span class='line'> "subject"=>"Eaque at perferendis non aut aut tempora deserunt.",
+</span><span class='line'> "body"=>"Perspiciatis omnis ex. Numquam tempora est omnis aliquid voluptas impedit. At quia accusantium.",
+</span><span class='line'> "read"=>true,
+</span><span class='line'> "resource_type"=>nil,
+</span><span class='line'> "resource_id"=>nil,
+</span><span class='line'> "sender_name"=>"Kiehn Inc",
+</span><span class='line'> "updated_at"=>"2014-11-25T10:27:28Z",
+</span><span class='line'> "sender_avatar"=>
+</span><span class='line'>  {"url"=>"/uploads/merchant/avatar/1/girl.jpeg",
+</span><span class='line'>   "medium_url"=>"/uploads/merchant/avatar/1/medium_girl.jpeg",
+</span><span class='line'>   "thumb_url"=>"/uploads/merchant/avatar/1/thumb_girl.jpeg"},
+</span><span class='line'> "image"=>
+</span><span class='line'>  {"url"=>"/uploads/message/image/31/gshock.jpg",
+</span><span class='line'>   "medium_url"=>"/uploads/message/image/31/medium_gshock.jpg",
+</span><span class='line'>   "thumb_url"=>"/uploads/message/image/31/thumb_gshock.jpg"}
+</span><span class='line'>   }
 </span><span class='line'>  ]
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
@@ -206,15 +228,31 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{
-</span><span class='line'>  "id"=>8,
-</span><span class='line'>  "subject"=>"Eos deserunt hic repudiandae.",
-</span><span class='line'>  "body"=>
-</span><span class='line'>   "Velit ratione aut libero aut et eum. Dignissimos alias pariatur est. Deserunt perspiciatis corporis natus. Repellendus est fuga ab eaque consequuntur voluptates rerum. Et adipisci totam vitae vel.",
-</span><span class='line'>  "read"=>true,
-</span><span class='line'>  "resource_type"=>nil,
-</span><span class='line'>  "resource_id"=>nil,
-</span><span class='line'>  "updated_at"=>"2014-11-11T09:58:44Z"
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{"id"=>31,
+</span><span class='line'> "subject"=>"Eaque at perferendis non aut aut tempora deserunt.",
+</span><span class='line'> "body"=>"Perspiciatis omnis ex. Numquam tempora est omnis aliquid voluptas impedit. At quia accusantium.",
+</span><span class='line'> "read"=>true,
+</span><span class='line'> "resource_type"=>nil,
+</span><span class='line'> "resource_id"=>nil,
+</span><span class='line'> "sender_name"=>"Kiehn Inc",
+</span><span class='line'> "updated_at"=>"2014-11-25T10:27:28Z",
+</span><span class='line'> "sender_avatar"=>
+</span><span class='line'>  {"url"=>"/uploads/merchant/avatar/1/girl.jpeg",
+</span><span class='line'>   "medium_url"=>"/uploads/merchant/avatar/1/medium_girl.jpeg",
+</span><span class='line'>   "thumb_url"=>"/uploads/merchant/avatar/1/thumb_girl.jpeg"},
+</span><span class='line'>
+</span><span class='line'> "image"=>
+</span><span class='line'>  {"url"=>"/uploads/message/image/31/gshock.jpg",
+</span><span class='line'>   "medium_url"=>"/uploads/message/image/31/medium_gshock.jpg",
+</span><span class='line'>   "thumb_url"=>"/uploads/message/image/31/thumb_gshock.jpg"}
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
