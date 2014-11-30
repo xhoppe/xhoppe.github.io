@@ -17,7 +17,7 @@ The client get the coupon information through the scanable Api. And then redeem 
 
 **This API needs authentication**
 
-`POST /api/v1/redeem`
+`POST /api/v1/redeems`
 
 The redeem accepts following parameters,
 

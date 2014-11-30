@@ -33,32 +33,45 @@ And it will return only the new messages since that time.
 
 The response will be like following
 
+**Updated on Nov 25**
+
+注意下面id=17的例子，sender_avatar可能为空，image中的url, medium_url, thumb_url也可能为空
+
 {% codeblock %}
 
 {"total_pages"=>1,
 
  "message_copies"=>
   [
-   {
-    "id"=>5,
-    "subject"=>"Quidem laborum est minus ducimus.",
-    "body"=>"Et modi ea repudiandae quis nulla exercitationem. Laboriosam ut perferendis dolorem facere. Fugit quis atque fuga.",
-    "read"=>false,
-    "resource_type"=>nil,
-    "resource_id"=>nil,
-    "updated_at"=>"2014-11-13T12:35:57Z"
-  },
+   {"id"=>17,
+ "subject"=>"Aperiam autem modi ut.",
+ "body"=>
+  "Vitae quo eum nostrum rerum nihil. Repellendus beatae omnis tempora vero ipsam. Recusandae blanditiis debitis consequatur qui dolore. Nihil ipsam vel dolorem ratione.",
+ "read"=>true,
+ "resource_type"=>nil,
+ "resource_id"=>nil,
+ "sender_name"=>"Xhopper",
+ "updated_at"=>"2014-11-25T10:23:27Z",
+ "sender_avatar"=>nil,
+ "image"=>{"url"=>nil, "medium_url"=>nil, "thumb_url"=>nil}},
 
-   {
-    "id"=>4,
-    "subject"=>"Corrupti sit repellendus totam quos tenetur velit.",
-    "body"=>
-     "Eos commodi magnam inventore quia esse unde quos. Quia hic ea in. Voluptatibus neque dolorum consectetur fugiat explicabo provident non.",
-    "read"=>false,
-    "resource_type"=>nil,
-    "resource_id"=>nil,
-    "updated_at"=>"2014-11-13T12:34:57Z"
-    }
+   {"id"=>31,
+ "subject"=>"Eaque at perferendis non aut aut tempora deserunt.",
+ "body"=>"Perspiciatis omnis ex. Numquam tempora est omnis aliquid voluptas impedit. At quia accusantium.",
+ "read"=>true,
+ "resource_type"=>nil,
+ "resource_id"=>nil,
+ "sender_name"=>"Kiehn Inc",
+ "updated_at"=>"2014-11-25T10:27:28Z",
+ "sender_avatar"=>
+  {"url"=>"/uploads/merchant/avatar/1/girl.jpeg",
+   "medium_url"=>"/uploads/merchant/avatar/1/medium_girl.jpeg",
+   "thumb_url"=>"/uploads/merchant/avatar/1/thumb_girl.jpeg"},
+ "image"=>
+  {"url"=>"/uploads/message/image/31/gshock.jpg",
+   "medium_url"=>"/uploads/message/image/31/medium_gshock.jpg",
+   "thumb_url"=>"/uploads/message/image/31/thumb_gshock.jpg"}
+   }
   ]
 }
 
@@ -109,15 +122,23 @@ Sample response is
 {% codeblock %}
 
 
-{
-  "id"=>8,
-  "subject"=>"Eos deserunt hic repudiandae.",
-  "body"=>
-   "Velit ratione aut libero aut et eum. Dignissimos alias pariatur est. Deserunt perspiciatis corporis natus. Repellendus est fuga ab eaque consequuntur voluptates rerum. Et adipisci totam vitae vel.",
-  "read"=>true,
-  "resource_type"=>nil,
-  "resource_id"=>nil,
-  "updated_at"=>"2014-11-11T09:58:44Z"
+{"id"=>31,
+ "subject"=>"Eaque at perferendis non aut aut tempora deserunt.",
+ "body"=>"Perspiciatis omnis ex. Numquam tempora est omnis aliquid voluptas impedit. At quia accusantium.",
+ "read"=>true,
+ "resource_type"=>nil,
+ "resource_id"=>nil,
+ "sender_name"=>"Kiehn Inc",
+ "updated_at"=>"2014-11-25T10:27:28Z",
+ "sender_avatar"=>
+  {"url"=>"/uploads/merchant/avatar/1/girl.jpeg",
+   "medium_url"=>"/uploads/merchant/avatar/1/medium_girl.jpeg",
+   "thumb_url"=>"/uploads/merchant/avatar/1/thumb_girl.jpeg"},
+
+ "image"=>
+  {"url"=>"/uploads/message/image/31/gshock.jpg",
+   "medium_url"=>"/uploads/message/image/31/medium_gshock.jpg",
+   "thumb_url"=>"/uploads/message/image/31/thumb_gshock.jpg"}
 }
 
 {% endcodeblock %}
