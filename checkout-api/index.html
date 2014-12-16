@@ -391,6 +391,18 @@
 
 <p><code>GET /api/orders?state=payment</code></p>
 
+<ul>
+<li>type: 可以是completed或者not_completed</li>
+</ul>
+
+
+<p>completed是已经付款的order，状态包括completed, partial_delivered, delivered
+not_completed是没有付款或者付款数量不够order总数的订单，状态包括created, payment</p>
+
+<p><code>GET /api/orders?type=completed</code> 返回所有已经成功付款的订单</p>
+
+<p><code>GET /api/orders?type=not_completed</code> 返回所有已经还没有成功付款的订单</p>
+
 <p>It will return following contents,</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -495,6 +507,8 @@
 </span><span class='line'>      <span class="p">{</span><span class="nt">&quot;merchant&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Marquardt-Murray&quot;</span><span class="p">,</span> <span class="nt">&quot;display_shipping_fee&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$5&quot;</span><span class="p">,</span> <span class="nt">&quot;shipping_fee&quot;</span><span class="err">=&gt;</span><span class="mf">5.0</span><span class="p">,</span> <span class="nt">&quot;shipping_fee_cents&quot;</span><span class="err">=&gt;</span><span class="mi">500</span><span class="p">}]}]}</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>注意，客户端应该检查total_pages，如果为0，orders属性将为空</p>
 
 <h2>库存的处理</h2>
 
