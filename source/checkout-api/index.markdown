@@ -217,6 +217,9 @@ not_completed是没有付款或者付款数量不够order总数的订单，状�
 
 `GET /api/orders?type=not_completed` 返回所有已经还没有成功付款的订单
 
+
+如果不带任何参数，将返回用户的所有订单，包括已付款和未付款订单
+
 It will return following contents,
 
 {% codeblock lang:json %}
