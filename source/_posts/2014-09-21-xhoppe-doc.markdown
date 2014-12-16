@@ -24,7 +24,7 @@ Here is the Xhoppe doc,
 
 [Products API](/product-api) (finished)
 
-[Checkout and Orders API](/checkout-api) (finished except MyOrders API)
+[Checkout and Orders API](/checkout-api) (finished except MyOrders API) (2014-12-16更新)
 
 [Scannable API](/scanable-api) (finished)
 

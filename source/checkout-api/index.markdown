@@ -206,6 +206,17 @@ For example, get orders that need payment,
 
 `GET /api/orders?state=payment`
 
+**2014-12-16 更新**
+
+- type: 可以是completed或者not_completed
+
+completed是已经付款的order，状态包括completed, partial_delivered, delivered
+not_completed是没有付款或者付款数量不够order总数的订单，状态包括created, payment
+
+`GET /api/orders?type=completed` 返回所有已经成功付款的订单
+
+`GET /api/orders?type=not_completed` 返回所有已经还没有成功付款的订单
+
 It will return following contents,
 
 {% codeblock lang:json %}
@@ -262,6 +273,8 @@ It will return following contents,
       {"merchant"=>"Marquardt-Murray", "display_shipping_fee"=>"$5", "shipping_fee"=>5.0, "shipping_fee_cents"=>500}]}]}
 
 {% endcodeblock %}
+
+注意，客户端应该检查total_pages，如果为0，orders属性将为空
 
 ## 库存的处理
 目前的库存将采用下面的方式，当用户创建一个order时，如果库存不足，服务端会返回下面的错误,
