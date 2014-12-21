@@ -55,6 +55,8 @@ In line_items the **variant_id** and **quantity** are mandatory, in the ship_add
 
 The expected response is as following,
 
+**2014-12-21更新，LineItems中的variant加入了merchant信息**
+
 {% codeblock lang:json %}
 
 {
@@ -91,6 +93,15 @@ The expected response is as following,
       "display_price"=>"$50",
       "price"=>50.0,
       "price_cents"=>5000,
+      "merchant"=>
+        {"name"=>"Considine-Ryan", 
+          "avatar"=>
+          {
+          "url"=>"/uploads/image/image/19/gshock.jpg",
+         "medium_url"=>"/uploads/image/image/19/medium_gshock.jpg",
+         "thumb_url"=>"/uploads/image/image/19/thumb_gshock.jpg"
+         }
+        },
       "images"=>
        [{"url"=>"/uploads/image/image/19/gshock.jpg",
          "medium_url"=>"/uploads/image/image/19/medium_gshock.jpg",

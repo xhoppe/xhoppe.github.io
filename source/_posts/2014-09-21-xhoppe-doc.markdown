@@ -24,7 +24,7 @@ Here is the Xhoppe doc,
 
 [Products API](/product-api) (finished)
 
-[Checkout and Orders API](/checkout-api) (finished except MyOrders API) (2014-12-16更新)
+[Checkout and Orders API](/checkout-api) (finished except MyOrders API) (2014-12-16更新)(2014-12-21更新，order中的line_item的variant加入merchant信息)
 
 [Scannable API](/scanable-api) (finished)
 
