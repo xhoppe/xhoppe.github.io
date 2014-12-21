@@ -143,6 +143,8 @@
 
 <p>The expected response is as following,</p>
 
+<p><strong>2014-12-21更新，LineItems中的variant加入了merchant信息</strong></p>
+
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -197,6 +199,15 @@
 <span class='line-number'>52</span>
 <span class='line-number'>53</span>
 <span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
 </pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
 </span><span class='line'> <span class="nt">&quot;id&quot;</span><span class="err">=&gt;</span><span class="mi">8</span><span class="p">,</span>
 </span><span class='line'> <span class="nt">&quot;state&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;payment&quot;</span><span class="p">,</span>
@@ -231,6 +242,15 @@
 </span><span class='line'>      <span class="nt">&quot;display_price&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;$50&quot;</span><span class="p">,</span>
 </span><span class='line'>      <span class="nt">&quot;price&quot;</span><span class="err">=&gt;</span><span class="mf">50.0</span><span class="p">,</span>
 </span><span class='line'>      <span class="nt">&quot;price_cents&quot;</span><span class="err">=&gt;</span><span class="mi">5000</span><span class="p">,</span>
+</span><span class='line'>      <span class="nt">&quot;merchant&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>        <span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;Considine-Ryan&quot;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nt">&quot;avatar&quot;</span><span class="err">=&gt;</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>          <span class="nt">&quot;url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/19/gshock.jpg&quot;</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;medium_url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/19/medium_gshock.jpg&quot;</span><span class="p">,</span>
+</span><span class='line'>         <span class="nt">&quot;thumb_url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/19/thumb_gshock.jpg&quot;</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>        <span class="p">},</span>
 </span><span class='line'>      <span class="nt">&quot;images&quot;</span><span class="err">=&gt;</span>
 </span><span class='line'>       <span class="p">[{</span><span class="nt">&quot;url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/19/gshock.jpg&quot;</span><span class="p">,</span>
 </span><span class='line'>         <span class="nt">&quot;medium_url&quot;</span><span class="err">=&gt;</span><span class="s2">&quot;/uploads/image/image/19/medium_gshock.jpg&quot;</span><span class="p">,</span>
