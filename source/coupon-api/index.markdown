@@ -42,12 +42,12 @@ This API can accepts parameters,
 
 for example,
 
-`GET /api/v1/coupons?type=redeemed`
-`GET /api/v1/coupons?type=expiring`
+`GET /api/v1/user_coupons?type=redeemed`
+`GET /api/v1/user_coupons?type=expiring`
 
 返回的结果是分页的，每页最多25条记录, 默认是返回第一页（page=0 是第一页），用户可以用page参数来返回别的页，比如返回第二页，
 
-`GET /api/v1/coupons?type=redeemed&page=1`
+`GET /api/v1/user_coupons?type=redeemed&page=1`
 
 返回结果如下, 下面结果中total_pages为1，说明只有一页， coupons返回结果，在每个coupon里面如果用户已经加了这个coupon，added_by_user为true，如果用户已经redeem了这个coupon，redeemed_by_user返回true
 
