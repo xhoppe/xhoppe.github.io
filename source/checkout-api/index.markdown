@@ -30,6 +30,8 @@ The body could be the line items like this,
 {% codeblock lang:json %}
 
 {
+  "remarks": 'this is a remarks',
+
   "line_items":
     [
       { "variant_id": 33,
@@ -72,6 +74,7 @@ The expected response is as following,
  "display_total"=>"$400",
  "total"=>400.0,
  "total_cents"=>40000,
+ "remarks" => 'this is a remarks',
  "ship_address"=>
   {
    "firstname"=>"Noemi",
@@ -165,6 +168,7 @@ The reference_id is the ID received from the paypal server. And Xhoppe server wi
  "display_total"=>"$400",
  "total"=>400.0,
  "total_cents"=>40000,
+ "remarks" => 'this is a remarks',
  "ship_address"=>
   {"firstname"=>"Brice",
    "lastname"=>"Larson",
